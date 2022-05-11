@@ -1,0 +1,14 @@
+{
+  "requests": {
+    "single": {
+      "BingRequest": {
+        "url": "https://cn.bing.com",
+        "method": "GET",
+        "body": "",
+        "headers": {
+          "Content-Type": "text/html"
+        }
+      }
+    }
+  }
+}

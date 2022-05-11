@@ -1,0 +1,44 @@
+{
+    "facets": [
+      "est_average_active_users__aggr",
+      "est_usage_penetration__aggr",
+      "est_install_penetration__aggr",
+      "est_install_base__aggr",
+      "est_open_rate__aggr",
+      "est_average_session_per_user__aggr",
+      "est_average_session_duration__aggr",
+      "est_average_time_per_user__aggr",
+      "est_total_time__aggr",
+      "est_average_active_days__aggr",
+      "est_percentage_active_days__aggr",
+      "est_share_of_category_time__aggr",
+      "est_average_bytes_per_user__aggr",
+      "est_average_bytes_per_session__aggr"
+    ],
+    "filters": {
+      "product_id": {
+        "equal": ${product_id}
+      },
+      "country_code": {
+        "in": ${country_code}
+      },
+      "market_code": {
+        "equal": "${market_code}"
+      },
+      "granularity": {
+        "equal": "${granularity}"
+      },
+      "date": {
+        "between": [
+          "${start_date}",
+          "${end_date}"
+        ]
+      }
+    },
+    "breakdowns": {
+      "product_id": {},
+      "device_code": {},
+      "country_code": {},
+      "date": {}
+    }
+  }

@@ -1,0 +1,1 @@
+std::count algorithm usage demonstration.

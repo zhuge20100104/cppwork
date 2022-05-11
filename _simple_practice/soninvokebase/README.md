@@ -1,0 +1,1 @@
+A simple demo for how to invoke base class's method in son.

@@ -1,0 +1,1 @@
+std::ifstream binary file read example.

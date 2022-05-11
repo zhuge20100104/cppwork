@@ -1,0 +1,1 @@
+Get status io configuration file.

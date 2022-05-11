@@ -1,0 +1,196 @@
+[{
+	"label": "Select Language",
+	"value": "all"
+}, {
+	"value": "ar-EG",
+	"label": "العربية (EG)"
+}, {
+	"value": "ar-KW",
+	"label": "العربية (KW)"
+}, {
+	"value": "ar-SA",
+	"label": "العربية (SA)"
+}, {
+	"value": "az-AZ",
+	"label": "Azərbaycanca (AZ)"
+}, {
+	"value": "bg-BG",
+	"label": "български (BG)"
+}, {
+	"value": "cs-CZ",
+	"label": "Čeština (CZ)"
+}, {
+	"value": "da-DK",
+	"label": "Dansk (DK)"
+}, {
+	"value": "de-AT",
+	"label": "Deutsch (AT)"
+}, {
+	"value": "de-CH",
+	"label": "Deutsch (CH)"
+}, {
+	"value": "de-DE",
+	"label": "Deutsch (DE)"
+}, {
+	"value": "el-GR",
+	"label": "Ελληνικά (GR)"
+}, {
+	"value": "en-AE",
+	"label": "English (AE)"
+}, {
+	"value": "en-AU",
+	"label": "English (AU)"
+}, {
+	"value": "en-CA",
+	"label": "English (CA)"
+}, {
+	"value": "en-GB",
+	"label": "English (GB)"
+}, {
+	"value": "en-IE",
+	"label": "English (IE)"
+}, {
+	"value": "en-LB",
+	"label": "English (LB)"
+}, {
+	"value": "en-LV",
+	"label": "English (LV)"
+}, {
+	"value": "en-NG",
+	"label": "English (NG)"
+}, {
+	"value": "en-NZ",
+	"label": "English (NZ)"
+}, {
+	"value": "en-PH",
+	"label": "English (PH)"
+}, {
+	"value": "en-PK",
+	"label": "English (PK)"
+}, {
+	"value": "en-SG",
+	"label": "English (SG)"
+}, {
+	"value": "en-US",
+	"label": "English (US)"
+}, {
+	"value": "en-ZA",
+	"label": "English (ZA)"
+}, {
+	"value": "es-AR",
+	"label": "Español (AR)"
+}, {
+	"value": "es-CL",
+	"label": "Español (CL)"
+}, {
+	"value": "es-CO",
+	"label": "Español (CO)"
+}, {
+	"value": "es-CR",
+	"label": "Español (CR)"
+}, {
+	"value": "es-ES",
+	"label": "Español (ES)"
+}, {
+	"value": "es-MX",
+	"label": "Español (MX)"
+}, {
+	"value": "es-PE",
+	"label": "Español (PE)"
+}, {
+	"value": "es-PR",
+	"label": "Español (PR)"
+}, {
+	"value": "fi-FI",
+	"label": "Suomi (FI)"
+}, {
+	"value": "fr-FR",
+	"label": "Français (FR)"
+}, {
+	"value": "hi-IN",
+	"label": "हिंदी (IN)"
+}, {
+	"value": "hr-HR",
+	"label": "Hrvatski (HR)"
+}, {
+	"value": "hu-HU",
+	"label": "magyar (HU)"
+}, {
+	"value": "id-ID",
+	"label": "Indonesia (ID)"
+}, {
+	"value": "it-IT",
+	"label": "Italiano (IT)"
+}, {
+	"value": "it-LT",
+	"label": "Italiano (LT)"
+}, {
+	"value": "iw-IL",
+	"label": "עִברִית (IL)"
+}, {
+	"value": "ja-JP",
+	"label": "日本語 (JP)"
+}, {
+	"value": "ko-KR",
+	"label": "한국어 (KR)"
+}, {
+	"value": "ms-MY",
+	"label": "Bahasa Melayu (MY)"
+}, {
+	"value": "nl-BE",
+	"label": "Nederlands (BE)"
+}, {
+	"value": "nl-NL",
+	"label": "Nederlands (NL)"
+}, {
+	"value": "no-NO",
+	"label": "norsk (NO)"
+}, {
+	"value": "pl-PL",
+	"label": "Polski (PL)"
+}, {
+	"value": "pt-BR",
+	"label": "Português (BR)"
+}, {
+	"value": "pt-PT",
+	"label": "Português (PT)"
+}, {
+	"value": "ro-RO",
+	"label": "română (RO)"
+}, {
+	"value": "ru-KZ",
+	"label": "Pусский (KZ)"
+}, {
+	"value": "ru-RU",
+	"label": "Pусский (RU)"
+}, {
+	"value": "sk-SK",
+	"label": "Slovenčina (SK)"
+}, {
+	"value": "sv-SE",
+	"label": "Svenska (SE)"
+}, {
+	"value": "sw-KE",
+	"label": "Kiswahili (KE)"
+}, {
+	"value": "th-TH",
+	"label": "ไทย (TH)"
+}, {
+	"value": "tr-TR",
+	"label": "Türkçe (TR)"
+}, {
+	"value": "uk-UA",
+	"label": "Українська (UA)"
+}, {
+	"value": "vi-VN",
+	"label": "Tiếng Việt (VN)"
+}, {
+	"value": "zh-CN",
+	"label": "简体中文 (CN)"
+}, {
+	"value": "zh-HK",
+	"label": "繁體中文 (HK)"
+}, {
+	"value": "zh-TW",
+	"label": "繁體中文 (TW)"
+}]

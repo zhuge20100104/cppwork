@@ -1,0 +1,20 @@
+syntax = 'proto3';
+
+message PHeader {
+    int32 bodySize = 1;
+    int32 type = 2;
+}
+
+message PBindName {
+    string name = 1;
+}
+
+message PChat {
+    string information = 1;
+}
+
+message PRoomInformation {
+    string name = 1;
+    string information = 2;
+}
+

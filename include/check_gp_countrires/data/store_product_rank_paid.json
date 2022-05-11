@@ -1,0 +1,49 @@
+{
+	"facets": ["store_product_rank_paid__aggr", "value_change(store_product_rank_paid__aggr)__aggr"],
+	"filters": {
+		"value_change": {
+			"span_value": 1,
+			"span_unit": "PERIOD"
+		},
+		"granularity": {
+			"equal": "daily"
+		},
+		"date": {
+			"equal": "2021-08-21"
+		},
+		"country_code": {
+			"equal": "{COUNTRY_CODE}"
+		},
+		"device_code": {
+			"equal": "android-all"
+		},
+		"category_id": {
+			"equal": 400000
+		}
+	},
+	"breakdowns": {
+		"product_id": {}
+	},
+	"pagination": {
+		"offset": 0,
+		"limit": 100
+	},
+	"order_by": [{
+		"name": "store_product_rank_paid__aggr",
+		"order": "asc"
+	}],
+	"fields": {
+		"product_id": {
+			"fields": ["name", "icon_url", "publisher_id", "market_code", "device_code", "vertical_code", "is_sensitive", "status", "category_id"],
+			"category_id": {
+				"fields": ["name"]
+			},
+			"publisher_id": {
+				"fields": ["name", "company_id"],
+				"company_id": {
+					"fields": ["name", "country_code"]
+				}
+			}
+		}
+	}
+}

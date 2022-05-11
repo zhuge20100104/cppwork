@@ -1,0 +1,3 @@
+1name:1:,2avg_time:1:,3min_time:1:,4max_time:1:,5fail_count:1:,6total_count:1:,keys_:1:
+"/v1.3/portfolio/app-performance?product_id=284882215&granularity=daily&start_date=2020-01-01&end_date=2020-01-03&countries=US",39938.25,1666.0,71744.0,20,20,"\"/v1.3/portfolio/app-performance?product_id=284882215&granularity=daily&start_date=2020-01-01&end_date=2020-01-03&countries=US\""
+

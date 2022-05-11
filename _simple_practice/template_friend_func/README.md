@@ -1,0 +1,1 @@
+Template friend function demo.

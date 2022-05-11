@@ -1,0 +1,114 @@
+- container_id: 613969623b911e052e083dfb-61396940063764061e25adcd
+  container_name: Paid Download Preview
+  monitoring_category: download_channel_paid_download_preview
+- container_id: 613969623b911e052e083dfb-6139694ef5fd6305305fc8a5
+  container_name: Paid Download Final
+  monitoring_category: download_channel_paid_download_final
+- container_id: 60d2e48fd7fc95052eff1b2c-60d2e43379914205363d46e1
+  container_name: Cross Usage
+  monitoring_category: game_cross_usage
+- container_id: 60d2e486310b19053a7d77ba-60d2e42379914205363d46df
+  container_name: File Report
+  monitoring_category: sdk_int_file_report
+- container_id: 60d2e486310b19053a7d77ba-60d2e42965930905396af49e
+  container_name: sdk_history
+  monitoring_category: sdk_int_sdk_history
+- container_id: 60d2e47b310b19053a7d77b8-60d2e42379914205363d46df
+  container_name: File Report
+  monitoring_category: multiple_product_file_report
+- container_id: 60d2e4716447e9052dccd6c0-60d2e41979914205363d46de
+  container_name: Topic Prediction
+  monitoring_category: advanced_review_topic_prediction
+- container_id: 60d2e4716447e9052dccd6c0-60d2e41ddc340e0537a84c43
+  container_name: Term metrics
+  monitoring_category: advanced_review_term_metrics
+- container_id: 60d2e46338cbb5053254fb16-60d2e3d15af582052eda842d
+  container_name: ASO (New)
+  monitoring_category: marketing_int_aso_(new)
+- container_id: 60d2e46338cbb5053254fb16-60d2e3d6d7fc95052eff1b2b
+  container_name: meta
+  monitoring_category: marketing_int_meta
+- container_id: 60d2e46338cbb5053254fb16-60d2e3dcdc340e0537a84c42
+  container_name: ad_app
+  monitoring_category: marketing_int_ad_app
+- container_id: 60d2e46338cbb5053254fb16-60d2e3e1a49d1e05371e9997
+  container_name: pub_app
+  monitoring_category: marketing_int_pub_app
+- container_id: 60d2e46338cbb5053254fb16-60d2e3e717927e05343699be
+  container_name: creative (WEEK/MONTH)
+  monitoring_category: marketing_int_creative_(week/month)
+- container_id: 60d2e46338cbb5053254fb16-60d2e3ecb7ca8a052de60617
+  container_name: creative
+  monitoring_category: marketing_int_creative
+- container_id: 60d2e46338cbb5053254fb16-60d2e3f1e5d993052b815ae8
+  container_name: creative_ad_app
+  monitoring_category: marketing_int_creative_ad_app
+- container_id: 60d2e46338cbb5053254fb16-60d2e3f865930905396af49c
+  container_name: ad_app_pub_app
+  monitoring_category: marketing_int_ad_app_pub_app
+- container_id: 60d2e46338cbb5053254fb16-60d2e3fde5d993052b815ae9
+  container_name: ad_app_publisher
+  monitoring_category: marketing_int_ad_app_publisher
+- container_id: 60d2e46338cbb5053254fb16-60d2e402a49d1e05371e9998
+  container_name: pub_app_ad_app
+  monitoring_category: marketing_int_pub_app_ad_app
+- container_id: 60d2e46338cbb5053254fb16-60d2e40e65930905396af49d
+  container_name: AD_PLATFORM_OVERVIEW?
+  monitoring_category: marketing_int_ad_platform_overview?
+- container_id: 60d2e46338cbb5053254fb16-60d2e41417927e05343699bf
+  container_name: Paid Search SOV
+  monitoring_category: marketing_int_paid_search_sov
+- container_id: 60d2e46338cbb5053254fb16-6166a8e99d4e8505426eb06c
+  container_name: Paid Keyword CPx
+  monitoring_category: marketing_int_paid_keyword_cpx
+- container_id: 60d2e46338cbb5053254fb16-6166a8f2682d750536ef227e
+  container_name: Keyword Defense
+  monitoring_category: marketing_int_keyword_defense
+- container_id: 60d2e46338cbb5053254fb16-6166a8f9ac84bb053e5f5158
+  container_name: Keyword Density
+  monitoring_category: marketing_int_keyword_density
+- container_id: 60d2e447ffceea0534711713-60d2e38b38cbb5053254fb14
+  container_name: Usage
+  monitoring_category: usage_int_usage
+- container_id: 60d2e447ffceea0534711713-60d2e39c6a05640530c4aedb
+  container_name: Demographic
+  monitoring_category: usage_int_demographic
+- container_id: 60d2e447ffceea0534711713-60d2e3a2885787052c7005d8
+  container_name: CrossApp
+  monitoring_category: usage_int_crossapp
+- container_id: 60d2e447ffceea0534711713-60d2e3a76447e9052dccd6be
+  container_name: Audience
+  monitoring_category: usage_int_audience
+- container_id: 60d2e447ffceea0534711713-60d2e3ac38cbb5053254fb15
+  container_name: City Level
+  monitoring_category: usage_int_city_level
+- container_id: 60d2e447ffceea0534711713-60d2e3b2d7fc95052eff1b2a
+  container_name: Mobile Web Domain Basic
+  monitoring_category: usage_int_mobile_web_domain_basic
+- container_id: 60d2e447ffceea0534711713-60d2e3b865930905396af49b
+  container_name: Mobile Web Unified Metric
+  monitoring_category: usage_int_mobile_web_unified_metric
+- container_id: 60d2e447ffceea0534711713-60d2e3bddc340e0537a84c41
+  container_name: Mobile Web Domain Journey
+  monitoring_category: usage_int_mobile_web_domain_journey
+- container_id: 60d2e447ffceea0534711713-60d2e3c2310b19053a7d77b7
+  container_name: Mobile Web Cross Usage
+  monitoring_category: usage_int_mobile_web_cross_usage
+- container_id: 60d2e447ffceea0534711713-60d2e3c7ffceea0534711712
+  container_name: Mobile Web Retention
+  monitoring_category: usage_int_mobile_web_retention
+- container_id: 60d2e447ffceea0534711713-60d2e3cc6447e9052dccd6bf
+  container_name: Retention
+  monitoring_category: usage_int_retention
+- container_id: 60d2e2a46a05640530c4aed9-60d2e32dffceea0534711710
+  container_name: Download & Revenue Preview
+  monitoring_category: store_int_download_&_revenue_preview
+- container_id: 60d2e2a46a05640530c4aed9-60d2e35438cbb5053254fb13
+  container_name: Download & Revenue Final
+  monitoring_category: store_int_download_&_revenue_final
+- container_id: 60d2e2a46a05640530c4aed9-60d2e35b5af582052eda842c
+  container_name: Market Size
+  monitoring_category: store_int_market_size
+- container_id: 60d2e2a46a05640530c4aed9-60d2e363ffceea0534711711
+  container_name: Publisher
+  monitoring_category: store_int_publisher

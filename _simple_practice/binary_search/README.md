@@ -1,0 +1,1 @@
+std::binary_search algorithm demo.

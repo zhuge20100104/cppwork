@@ -1,0 +1,1 @@
+Test whether or not the given URI can be opened for the localized google app store page.

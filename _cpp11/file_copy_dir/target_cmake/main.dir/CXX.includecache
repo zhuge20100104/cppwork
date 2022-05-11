@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/aabjfzhu/code/cppwork/_cpp11/file_copy_dir/f_copy.h
+string
+-
+
+/Users/aabjfzhu/code/cppwork/_cpp11/file_copy_dir/main.cpp
+f_copy.h
+/Users/aabjfzhu/code/cppwork/_cpp11/file_copy_dir/f_copy.h
+filesystem
+-
+iostream
+-
+fstream
+-
+string
+-
+

@@ -1,0 +1,1 @@
+A simple demo for son's static member access.

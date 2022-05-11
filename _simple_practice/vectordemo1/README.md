@@ -1,0 +1,1 @@
+std::vector add customized element.

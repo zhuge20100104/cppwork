@@ -1,0 +1,1 @@
+Bind and customize template arguments test.

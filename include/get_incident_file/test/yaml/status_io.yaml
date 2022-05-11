@@ -1,0 +1,129 @@
+- container_id: 6171126e51fec9053d611f01-6171125bea08e105461a4f88
+  container_name: Game IQ Taxonomy & Tags
+  monitoring_category: game_iq_game_iq_taxonomy_&_tags
+- container_id: 6170d64b8e1cce053fe13d8e-6170d657272a3a053aefd518
+  container_name: Keyword Rank
+  monitoring_category: aso_keyword_rank
+- container_id: 6170d64b8e1cce053fe13d8e-6170d65f714e1f053880be65
+  container_name: ASO Organic Metrics
+  monitoring_category: aso_aso_organic_metrics
+- container_id: 6170d64b8e1cce053fe13d8e-6170d667714e1f053880be66
+  container_name: Paid Keyword SOV & Defense
+  monitoring_category: aso_paid_keyword_sov_&_defense
+- container_id: 6170d64b8e1cce053fe13d8e-6170d66eea08e105461a4f71
+  container_name: Keyword CPx
+  monitoring_category: aso_keyword_cpx
+- container_id: 6170d64b8e1cce053fe13d8e-6170d6768e1cce053fe13d90
+  container_name: Keyword Density
+  monitoring_category: aso_keyword_density
+- container_id: 6170d58a272a3a053aefd514-6170d597272a3a053aefd516
+  container_name: App Details
+  monitoring_category: free_intelligence_app_details
+- container_id: 6170d58a272a3a053aefd514-6170d59fea08e105461a4f6f
+  container_name: App Store Rank
+  monitoring_category: free_intelligence_app_store_rank
+- container_id: 6170d58a272a3a053aefd514-6170d5a79d4e8505426eb568
+  container_name: Ratings
+  monitoring_category: free_intelligence_ratings
+- container_id: 6170d58a272a3a053aefd514-6170d5af272a3a053aefd517
+  container_name: Ratings Overtime
+  monitoring_category: free_intelligence_ratings_overtime
+- container_id: 6170d58a272a3a053aefd514-6170d5b69604e60540fcf8f1
+  container_name: Reviews
+  monitoring_category: free_intelligence_reviews
+- container_id: 6170d58a272a3a053aefd514-6170d5bd682d750536ef26a8
+  container_name: Featured
+  monitoring_category: free_intelligence_featured
+- container_id: 6170d58a272a3a053aefd514-6170d5e2ea08e105461a4f70
+  container_name: DNA (Company & Publisher Details)
+  monitoring_category: free_intelligence_dna_(company_&_publisher_details)
+- container_id: 6170d58a272a3a053aefd514-6170d5ea8e1cce053fe13d8d
+  container_name: Timeline & Event
+  monitoring_category: free_intelligence_timeline_&_event
+- container_id: 6170d58a272a3a053aefd514-6170d5f29d4e8505426eb569
+  container_name: Mobile Performance Score(MPS)
+  monitoring_category: free_intelligence_mobile_performance_score(mps)
+- container_id: 6170d58a272a3a053aefd514-61711714562df105388c1974
+  container_name: Meta
+  monitoring_category: free_intelligence_meta
+- container_id: 60d2e486310b19053a7d77ba-6170d5489604e60540fcf8f0
+  container_name: SDK history
+  monitoring_category: sdk_intelligence_sdk_history
+- container_id: 60d2e486310b19053a7d77ba-6170d55251fec9053d611ee1
+  container_name: SDK Meta(Dimension & Category)
+  monitoring_category: sdk_intelligence_sdk_meta(dimension_&_category)
+- container_id: 60d2e46338cbb5053254fb16-6170d4817e9a82053ce718ae
+  container_name: Creative
+  monitoring_category: marketing_intelligence_creative
+- container_id: 60d2e46338cbb5053254fb16-6170d48a682d750536ef26a7
+  container_name: Advertiser Metrics
+  monitoring_category: marketing_intelligence_advertiser_metrics
+- container_id: 60d2e46338cbb5053254fb16-6170d4929604e60540fcf8ef
+  container_name: Publisher Metrics
+  monitoring_category: marketing_intelligence_publisher_metrics
+- container_id: 60d2e46338cbb5053254fb16-6170d49ae91909053f83f214
+  container_name: Ad Platform Overview
+  monitoring_category: marketing_intelligence_ad_platform_overview
+- container_id: 60d2e447ffceea0534711713-60d2e42379914205363d46df
+  container_name: File Report
+  monitoring_category: usage_intelligence_file_report
+- container_id: 60d2e447ffceea0534711713-6170d040ea08e105461a4f6e
+  container_name: App Usage & Engagement
+  monitoring_category: usage_intelligence_app_usage_&_engagement
+- container_id: 60d2e447ffceea0534711713-6170d055714e1f053880be62
+  container_name: App Audience & Demographics
+  monitoring_category: usage_intelligence_app_audience_&_demographics
+- container_id: 60d2e447ffceea0534711713-6170d0979d4e8505426eb566
+  container_name: App Cross App Usage
+  monitoring_category: usage_intelligence_app_cross_app_usage
+- container_id: 60d2e447ffceea0534711713-6170d0a2ac84bb053e5f5549
+  container_name: App City-Level Usage
+  monitoring_category: usage_intelligence_app_city-level_usage
+- container_id: 60d2e447ffceea0534711713-6170d0ac562df105388c1963
+  container_name: App Usage Retention
+  monitoring_category: usage_intelligence_app_usage_retention
+- container_id: 60d2e447ffceea0534711713-6170d0ce714e1f053880be64
+  container_name: Mobile Web Usage  & Engagement
+  monitoring_category: usage_intelligence_mobile_web_usage__&_engagement
+- container_id: 60d2e447ffceea0534711713-6170d0e03ce760053880cfd7
+  container_name: Mobile App/Web Unique Usage (Deduplicated)
+  monitoring_category: usage_intelligence_mobile_app/web_unique_usage_(deduplicated)
+- container_id: 60d2e447ffceea0534711713-6170d0ec8e1cce053fe13d8c
+  container_name: Mobile Web User Journey
+  monitoring_category: usage_intelligence_mobile_web_user_journey
+- container_id: 60d2e447ffceea0534711713-6170d11a562df105388c1964
+  container_name: Mobile Web Cross App/Web Usage
+  monitoring_category: usage_intelligence_mobile_web_cross_app/web_usage
+- container_id: 60d2e447ffceea0534711713-6170d12551fec9053d611ee0
+  container_name: Mobile Web Retention
+  monitoring_category: usage_intelligence_mobile_web_retention
+- container_id: 60d2e447ffceea0534711713-6170d13c91f9bd053f0be5df
+  container_name: Mobile Web Domain Basic
+  monitoring_category: usage_intelligence_mobile_web_domain_basic
+- container_id: 60d2e447ffceea0534711713-6170d146e2615605445a08da
+  container_name: App Cross Game IQ Tag Usage (Game IQ)
+  monitoring_category: usage_intelligence_app_cross_game_iq_tag_usage_(game_iq)
+- container_id: 60d2e2a46a05640530c4aed9-60d2e32dffceea0534711710
+  container_name: Download & Revenue Preview
+  monitoring_category: store_intelligence_download_&_revenue_preview
+- container_id: 60d2e2a46a05640530c4aed9-60d2e35438cbb5053254fb13
+  container_name: Download & Revenue Final
+  monitoring_category: store_intelligence_download_&_revenue_final
+- container_id: 60d2e2a46a05640530c4aed9-60d2e35b5af582052eda842c
+  container_name: Market Size
+  monitoring_category: store_intelligence_market_size
+- container_id: 60d2e2a46a05640530c4aed9-60d2e363ffceea0534711711
+  container_name: Publisher
+  monitoring_category: store_intelligence_publisher
+- container_id: 60d2e2a46a05640530c4aed9-60d2e42379914205363d46df
+  container_name: File Report
+  monitoring_category: store_intelligence_file_report
+- container_id: 60d2e2a46a05640530c4aed9-6170cf90e91909053f83f20e
+  container_name: Download Channel - Preview
+  monitoring_category: store_intelligence_download_channel_-_preview
+- container_id: 60d2e2a46a05640530c4aed9-6170cf9be91909053f83f20f
+  container_name: Download Channel - Final
+  monitoring_category: store_intelligence_download_channel_-_final
+- container_id: 60d2e2a46a05640530c4aed9-6170d5da0c2793053b5702cc
+  container_name: Advanced Reviews
+  monitoring_category: store_intelligence_advanced_reviews

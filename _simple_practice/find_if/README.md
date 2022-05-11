@@ -1,0 +1,1 @@
+std::find_if demo for both built-in types and customization types.

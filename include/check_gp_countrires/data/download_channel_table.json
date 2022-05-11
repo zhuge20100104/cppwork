@@ -1,0 +1,66 @@
+{
+	"facets": ["est_download__sum", "value_change(est_download__sum)__aggr", "est_paid_channel_download__sum", "value_change(est_paid_channel_download__sum)__aggr", "est_paid_ads_download__sum", "value_change(est_paid_ads_download__sum)__aggr", "est_paid_search_download__sum", "value_change(est_paid_search_download__sum)__aggr", "est_organic_channel_download__sum", "value_change(est_organic_channel_download__sum)__aggr", "est_organic_featured_download__sum", "value_change(est_organic_featured_download__sum)__aggr", "est_organic_search_download__sum", "value_change(est_organic_search_download__sum)__aggr"],
+	"filters": {
+		"value_change": {
+			"span_value": 1,
+			"span_unit": "PERIOD"
+		},
+		"granularity": {
+			"equal": "daily"
+		},
+		"date": {
+			"between": ["2021-05-24", "2021-08-21"]
+		},
+		"device_code": {
+			"equal": "android-phone"
+		},
+		"country_code": {
+			"in": ["{COUNTRY_CODE}"]
+		},
+		"unified_product_id": {
+			"in": {
+				"facets": ["unified_product_id"],
+				"filters": {
+					"app_group_id": {
+						"equal": "OPNL2NM6JEFBALEYNTX2NVQIOJU2ESLHFVKJJTRUN7AEMFT37H3A===="
+					},
+					"unified_with": {
+						"in": ["apps_only", "apps_and_domains"]
+					},
+					"vertical_code": {
+						"equal": "app"
+					}
+				},
+				"breakdowns": {}
+			}
+		}
+	},
+	"breakdowns": {
+		"unified_product_id": {}
+	},
+	"pagination": {
+		"offset": 0,
+		"limit": 100
+	},
+	"order_by": [{
+		"name": "est_download__sum",
+		"order": "desc"
+	}],
+	"fields": {
+		"product_id": {
+			"fields": ["name", "icon_url", "publisher_id", "market_code", "device_code", "vertical_code", "is_sensitive", "status"],
+			"publisher_id": {
+				"fields": ["name", "company_id"],
+				"company_id": {
+					"fields": ["name", "country_code"]
+				}
+			}
+		},
+		"unified_product_id": {
+			"fields": ["name", "icon_url", "company_id", "market_code", "is_sensitive", "vertical_code"],
+			"company_id": {
+				"fields": ["name", "country_code"]
+			}
+		}
+	}
+}

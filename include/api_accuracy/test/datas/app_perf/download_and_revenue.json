@@ -1,0 +1,39 @@
+{
+    "facets": [
+      "est_download__sum",
+      "est_cumulative_download__aggr",
+      "est_revenue__sum",
+      "est_cumulative_revenue__aggr",
+      "est_paid_channel_download__sum",
+      "est_organic_channel_download__sum",
+      "est_paid_channel_download_share__aggr",
+      "est_organic_channel_download_share__aggr",
+      "est_rpd__aggr"
+    ],
+    "filters": {
+      "product_id": {
+        "equal": ${product_id}
+      },
+      "country_code": {
+        "in": ${country_code}
+      },
+      "market_code": {
+        "equal": "${market_code}"
+      },
+      "granularity": {
+        "equal": "${granularity}"
+      },
+      "date": {
+        "between": [
+          "${start_date}",
+          "${end_date}"
+        ]
+      }
+    },
+    "breakdowns": {
+       "product_id": {},
+       "device_code": {},
+       "country_code": {},
+       "date": {}
+    }
+  }

@@ -1,0 +1,38 @@
+{
+    "facets": [
+      "est_retention_month__aggr"
+    ],
+    "filters": {
+      "product_id": {
+        "equal": ${product_id}
+      },
+      "country_code": {
+        "in": ${country_code}
+      },
+      "market_code": {
+        "equal": "${market_code}"
+      },
+      "granularity": {
+        "equal": "${granularity}"
+      },
+      "vertical_code": {
+        "equal": "app"
+      },
+      "vertical_code": {
+        "equal": "app"
+      },
+      "date": {
+        "between": [
+          "${start_date}",
+          "${end_date}"
+        ]
+      }
+    },
+    "breakdowns": {
+      "product_id": {},
+      "device_code": {},
+      "country_code": {},
+      "date": {},
+      "retention_months": {}
+    }
+  }

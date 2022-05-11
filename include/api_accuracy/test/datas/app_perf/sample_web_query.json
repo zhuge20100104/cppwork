@@ -1,0 +1,43 @@
+{
+    "facets": [
+      "est_download__sum",
+      "est_cumulative_download__aggr",
+      "est_revenue__sum",
+      "est_cumulative_revenue__aggr",
+      "est_paid_channel_download__sum",
+      "est_organic_channel_download__sum",
+      "est_paid_channel_download_share__aggr",
+      "est_organic_channel_download_share__aggr",
+      "est_rpd__aggr"
+    ],
+    "filters": {
+      "product_id": {
+        "equal": 284882215
+      },
+      "country_code": {
+        "equal": "US"
+      },
+      "device_code": {
+        "equal": "ios-phone"
+      },
+      "market_code": {
+        "equal": "apple-store"
+      },
+      "granularity": {
+        "equal": "daily"
+      },
+      "date": {
+        "between": [
+          "2021-07-01",
+          "2021-07-31"
+        ]
+      }
+    },
+    "breakdowns": {
+       "product_id": {},
+       "device_code": {},
+       "country_code": {},
+       "date": {}
+
+    }
+  }

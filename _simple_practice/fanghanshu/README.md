@@ -1,0 +1,1 @@
+Function objects simple demo.

@@ -1,0 +1,1 @@
+A simple print function print a char several times.

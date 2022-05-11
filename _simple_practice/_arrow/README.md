@@ -1,0 +1,1 @@
+Apache Arrow demonstration project for parquet file reader and writer(both local and HDFS).

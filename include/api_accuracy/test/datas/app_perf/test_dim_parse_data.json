@@ -1,0 +1,68 @@
+{
+    "data":{
+        "facets":[
+            {
+                "name":"Meteor Idle",
+                "market_code":"apple-store",
+                "device_code":"ios-all",
+                "description":"Make perfect shots! Collect all stars! Unlock upgrades to get highest score!",
+                "price":0,
+                "has_iap":false,
+                "unified_product_id":1000600000711782,
+                "unified_category_id":800001,
+                "category_id":100001,
+                "publisher_id":1278916211,
+                "product_id":1299893104,
+                "facet":"product_id"
+            }
+        ],
+        "dimensions":{
+            "product_id":{
+                "1299893104":{
+                    "name":"Meteor Idle",
+                    "market_code":"apple-store",
+                    "device_code":"ios-all",
+                    "description":"Make perfect shots! Collect all stars! Unlock upgrades to get highest score!",
+                    "price":0,
+                    "has_iap":false,
+                    "unified_product_id":1000600000711782,
+                    "unified_category_id":800001,
+                    "category_id":100001,
+                    "publisher_id":1278916211,
+                    "product_id":1299893104,
+                    "facet":"product_id"
+                }
+            },
+            "category_id":{
+                "100001":{
+                    "name":"Games",
+                    "slug":"games",
+                    "category_id":100001,
+                    "facet":"category_id"
+                }
+            },
+            "publisher_id":{
+                "1278916211":{
+                    "name":"Andrei Sokal",
+                    "market_code":"apple-store",
+                    "website":null,
+                    "company_id":1000200000265389,
+                    "publisher_id":1278916211,
+                    "facet":"publisher_id"
+                }
+            },
+            "company_id":{
+                "1000200000265389":{
+                    "name":"SayGames",
+                    "exchange":null,
+                    "ticker_symbol":null,
+                    "website":"https://saygames.by/",
+                    "is_public_company":false,
+                    "country_code":"BY",
+                    "company_id":1000200000265389,
+                    "facet":"company_id"
+                }
+            }
+        }
+    }
+}

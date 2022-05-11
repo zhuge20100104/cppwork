@@ -1,0 +1,81 @@
+{
+	"facets": ["est_download__sum", "value_change(est_download__sum)__aggr"],
+	"filters": {
+		"value_change": {
+			"span_value": 1,
+			"span_unit": "PERIOD"
+		},
+		"granularity": {
+			"equal": "daily"
+		},
+		"date": {
+			"between": ["2021-07-22", "2021-08-19"]
+		},
+		"country_code": {
+			"in": ["{COUNTRY_CODE}"]
+		},
+		"device_code": {
+			"equal": "android-all"
+		},
+		"unified_category_id": {
+			"equal": 800000
+		},
+		"product_id.publisher_id.company_id": {
+			"in": {
+				"facets": ["est_download__sum"],
+				"filters": {
+					"granularity": {
+						"equal": "daily"
+					},
+					"date": {
+						"between": ["2021-07-22", "2021-08-19"]
+					},
+					"country_code": {
+						"in": ["{COUNTRY_CODE}"]
+					},
+					"device_code": {
+						"equal": "android-all"
+					},
+					"unified_category_id": {
+						"equal": 800000
+					}
+				},
+				"breakdowns": {
+					"product_id.publisher_id.company_id": {}
+				},
+				"pagination": {
+					"limit": 1000,
+					"offset": 0
+				},
+				"order_by": [{
+					"name": "est_download__sum",
+					"order": "desc"
+				}]
+			}
+		}
+	},
+	"breakdowns": {
+		"product_id.publisher_id.company_id": {}
+	},
+	"order_by": [{
+		"name": "est_download__sum",
+		"order": "desc"
+	}],
+	"fields": {
+		"product_id.publisher_id": {
+			"fields": ["name", "market_code", "company_id", "product_id_count"],
+			"company_id": {
+				"fields": ["name"]
+			}
+		},
+		"product_id.publisher_id.company_id": {
+			"fields": ["name", "country_code", "parent_company_id", "market_code", "product_id_count"],
+			"parent_company_id": {
+				"fields": ["name"]
+			}
+		},
+		"product_id.publisher_id.company_id.parent_company_id": {
+			"fields": ["name", "country_code", "market_code", "company_id_count", "product_id_count"]
+		}
+	}
+}

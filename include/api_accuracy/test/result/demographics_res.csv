@@ -1,0 +1,17 @@
+age_code:15:,country_code:15:,date:15:,device_code:15:,est_demographics_index:15:,est_demographics_percent:15:,gender_code:15:,granularity:15:,keys_:15:
+"45_plus","US","2020-01-01","ios-phone",107,0.273916,"all","monthly","\"45_plus\"\"US\"\"2020-01-01\"\"ios-phone\"1070.273916\"all\"\"monthly\""
+"25_44","US","2020-01-01","ios-phone",116,0.511393,"all","monthly","\"25_44\"\"US\"\"2020-01-01\"\"ios-phone\"1160.511393\"all\"\"monthly\""
+"16_24","US","2020-01-01","ios-phone",69,0.214691,"all","monthly","\"16_24\"\"US\"\"2020-01-01\"\"ios-phone\"690.214691\"all\"\"monthly\""
+"all","US","2020-01-01","ios-phone",108,0.620543,"female","monthly","\"all\"\"US\"\"2020-01-01\"\"ios-phone\"1080.620543\"female\"\"monthly\""
+"all","US","2020-01-01","ios-phone",88,0.379457,"male","monthly","\"all\"\"US\"\"2020-01-01\"\"ios-phone\"880.379457\"male\"\"monthly\""
+"45_plus","US","2020-01-01","ios-phone",107,0.273916,"all","monthly","\"45_plus\"\"US\"\"2020-01-01\"\"ios-phone\"1070.273916\"all\"\"monthly\""
+"25_44","US","2020-01-01","ios-phone",116,0.511393,"all","monthly","\"25_44\"\"US\"\"2020-01-01\"\"ios-phone\"1160.511393\"all\"\"monthly\""
+"16_24","US","2020-01-01","ios-phone",69,0.214691,"all","monthly","\"16_24\"\"US\"\"2020-01-01\"\"ios-phone\"690.214691\"all\"\"monthly\""
+"all","US","2020-01-01","ios-phone",108,0.620543,"female","monthly","\"all\"\"US\"\"2020-01-01\"\"ios-phone\"1080.620543\"female\"\"monthly\""
+"all","US","2020-01-01","ios-phone",88,0.379457,"male","monthly","\"all\"\"US\"\"2020-01-01\"\"ios-phone\"880.379457\"male\"\"monthly\""
+"45_plus","US","2020-02-01","ios-phone",108,0.275813,"all","monthly","\"45_plus\"\"US\"\"2020-02-01\"\"ios-phone\"1080.275813\"all\"\"monthly\""
+"25_44","US","2020-02-01","ios-phone",116,0.509782,"all","monthly","\"25_44\"\"US\"\"2020-02-01\"\"ios-phone\"1160.509782\"all\"\"monthly\""
+"16_24","US","2020-02-01","ios-phone",69,0.214405,"all","monthly","\"16_24\"\"US\"\"2020-02-01\"\"ios-phone\"690.214405\"all\"\"monthly\""
+"all","US","2020-02-01","ios-phone",108,0.619796,"female","monthly","\"all\"\"US\"\"2020-02-01\"\"ios-phone\"1080.619796\"female\"\"monthly\""
+"all","US","2020-02-01","ios-phone",88,0.380204,"male","monthly","\"all\"\"US\"\"2020-02-01\"\"ios-phone\"880.380204\"male\"\"monthly\""
+

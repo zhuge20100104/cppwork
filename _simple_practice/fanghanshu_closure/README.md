@@ -1,0 +1,1 @@
+Functional objects simulates closure.

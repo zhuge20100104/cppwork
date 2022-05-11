@@ -1,0 +1,1 @@
+Test boost::lexical_cast cast std::string to int.

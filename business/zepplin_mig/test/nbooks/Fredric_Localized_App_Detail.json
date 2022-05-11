@@ -1,0 +1,416 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%pyspark\n\nspark.sparkContext.addPyFile(\"s3://b2c-prod-dca-bdp-data/BDP-PROD-APP-INT-QA/bdp/user_data/application_name=aa_data_test_app/application_code/version=latest/code/bdp_resources/usr/lib/spark/python/dependencies.zip\")\n\nfrom data_lib.api import  spark_loader\n\nloader = spark_loader(spark)\np_path = \"s3://b2c-prod-data-pipeline-qa/fredric_localized_sample_apps/\"\ndf = loader.load_parquet_as_table(p_path, \"localized_detail_sample\")\n\ndf1 = spark.sql(\"select date,country,app_id from localized_detail_sample limit 10\")\ndf1.show(10)\n\n\n\n\n\n\n\n\n    \n\n\n\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "/opt/anaconda3/lib/python3.7/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use \"pip install psycopg2-binary\" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.\n  \"\"\")\n+----------+-------+--------------+\n|      date|country|        app_id|\n+----------+-------+--------------+\n|2021-08-12|     IL|     595558452|\n|2021-08-12|     KW|     368217298|\n|2021-08-12|     LV|     544007664|\n|2021-08-13|     PH|     595558452|\n|2021-08-14|     LV|     368726182|\n|2021-08-13|     MX|     327962480|\n|2021-08-12|     PL|     544007664|\n|2021-08-11|     UA|     310633997|\n|2021-08-12|     SA|     595558452|\n|2021-08-11|     SE|20600000025034|\n+----------+-------+--------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_1954183993",
+      "id": "20210811-090428_1531045589",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:10343"
+    },
+    {
+      "text": "%sh\n\naws s3 ls s3://b2c-prod-dca-bdp-data/BDP-PROD-APP-INT-QA/bdp/user_data/application_name=aa_data_test_app/application_code/version=latest/code/bdp_resources/\n\n# aws s3 ls s3://b2c-prod-dca-bdp-data/BDP-PROD-APP-INT-QA/bdp/user_data/application_name=aa_int_data_pipeline_qa/application_code/version=latest/code/bdp_resources/python/\n# aws s3 ls s3://b2c-prod-dca-bdp-data/BDP-PROD-APP-INT-QA/bdp/user_data/application_name=bdp_fredric_test/application_code/version=latest/code/bdp_resources/usr/",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "                           PRE usr/\n2021-12-01 04:14:31       6148 .DS_Store\n2021-12-01 04:14:32         95 __init__.py\n2021-12-01 04:14:31        148 requirements.txt\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-635773898",
+      "id": "20210812-012001_1782412523",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10344"
+    },
+    {
+      "text": "%pyspark\n## Convert raw data to wide table\n\nfrom  pyspark.storagelevel import StorageLevel\nfrom pyspark.sql.functions import *\n\ndf = spark.read.parquet(\"s3://aardvark-prod-dca-data/interface/localized_app_detail/\")\n\ndf.createOrReplaceTempView(\"raw_data\")\n\nraw_to_wide = '''\n\nSELECT  date,\n        country,\n        app_id,\n        platform,\n        bundle_id,\n        app_store_notes, banner_image_url, banner_md5, code, company_code, company_id, company_name, company_slug, release_date as current_release_date, description, features, first_release_date, icon_url, icon_md5, language_code, languages, replace(locale, '_', '-') as locale, name, permissions, coalesce(cast(price as  float),0.0) as price, primary_category_code, primary_category_id, promotional_text, release_notes, screenshots_json, screenshots_md5, file_size as size, slug, subtitle, version, status\n    FROM raw_data  where date='2021-08-29' PIVOT (FIRST(value)\n      FOR field_name IN ('app_store_notes', 'banner_image_url', 'banner_md5', 'code' ,'company_code', 'company_id', 'company_name', 'company_slug', 'release_date', 'description', 'features', 'first_release_date', 'icon_url', 'icon_md5', 'language_code', 'languages', 'locale', 'name', 'permissions', 'price', 'primary_category_code', 'primary_category_id', 'promotional_text', 'release_notes', 'screenshots_json', 'screenshots_md5', 'file_size', 'slug', 'subtitle', 'version', 'status'))\n'''\ndf = spark.sql(raw_to_wide)\ndf.write.parquet(\"s3://b2c-prod-data-pipeline-qa/t_old_data\")\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mPy4JJavaError\u001b[0m                             Traceback (most recent call last)\n\u001b[0;32m/usr/lib/spark/python/lib/pyspark.zip/pyspark/sql/utils.py\u001b[0m in \u001b[0;36mdeco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m     62\u001b[0m         \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 63\u001b[0;31m             \u001b[0;32mreturn\u001b[0m \u001b[0mf\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkw\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     64\u001b[0m         \u001b[0;32mexcept\u001b[0m \u001b[0mpy4j\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mprotocol\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mPy4JJavaError\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0me\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/lib/spark/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py\u001b[0m in \u001b[0;36mget_return_value\u001b[0;34m(answer, gateway_client, target_id, name)\u001b[0m\n\u001b[1;32m    327\u001b[0m                     \u001b[0;34m\"An error occurred while calling {0}{1}{2}.\\n\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 328\u001b[0;31m                     format(target_id, \".\", name), value)\n\u001b[0m\u001b[1;32m    329\u001b[0m             \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mPy4JJavaError\u001b[0m: An error occurred while calling o97.sql.\n: org.apache.spark.sql.catalyst.parser.ParseException: \nmismatched input 'PIVOT' expecting <EOF>(line 9, pos 43)\n\n== SQL ==\n\n\nSELECT  date,\n        country,\n        app_id,\n        platform,\n        bundle_id,\n        app_store_notes, banner_image_url, banner_md5, code, company_code, company_id, company_name, company_slug, release_date as current_release_date, description, features, first_release_date, icon_url, icon_md5, language_code, languages, replace(locale, '_', '-') as locale, name, permissions, coalesce(cast(price as  float),0.0) as price, primary_category_code, primary_category_id, promotional_text, release_notes, screenshots_json, screenshots_md5, file_size as size, slug, subtitle, version, status\n    FROM raw_data  where date='2021-08-29' PIVOT (FIRST(value)\n-------------------------------------------^^^\n      FOR field_name IN ('app_store_notes', 'banner_image_url', 'banner_md5', 'code' ,'company_code', 'company_id', 'company_name', 'company_slug', 'release_date', 'description', 'features', 'first_release_date', 'icon_url', 'icon_md5', 'language_code', 'languages', 'locale', 'name', 'permissions', 'price', 'primary_category_code', 'primary_category_id', 'promotional_text', 'release_notes', 'screenshots_json', 'screenshots_md5', 'file_size', 'slug', 'subtitle', 'version', 'status'))\n\n\tat org.apache.spark.sql.catalyst.parser.ParseException.withCommand(ParseDriver.scala:241)\n\tat org.apache.spark.sql.catalyst.parser.AbstractSqlParser.parse(ParseDriver.scala:117)\n\tat org.apache.spark.sql.execution.SparkSqlParser.parse(SparkSqlParser.scala:48)\n\tat org.apache.spark.sql.catalyst.parser.AbstractSqlParser.parsePlan(ParseDriver.scala:69)\n\tat org.apache.spark.sql.SparkSession.sql(SparkSession.scala:643)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:238)\n\tat java.lang.Thread.run(Thread.java:748)\n\n\nDuring handling of the above exception, another exception occurred:\n\n\u001b[0;31mParseException\u001b[0m                            Traceback (most recent call last)\n\u001b[0;32m<ipython-input-6-6a77a902172d>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m     19\u001b[0m       FOR field_name IN ('app_store_notes', 'banner_image_url', 'banner_md5', 'code' ,'company_code', 'company_id', 'company_name', 'company_slug', 'release_date', 'description', 'features', 'first_release_date', 'icon_url', 'icon_md5', 'language_code', 'languages', 'locale', 'name', 'permissions', 'price', 'primary_category_code', 'primary_category_id', 'promotional_text', 'release_notes', 'screenshots_json', 'screenshots_md5', 'file_size', 'slug', 'subtitle', 'version', 'status'))\n\u001b[1;32m     20\u001b[0m '''\n\u001b[0;32m---> 21\u001b[0;31m \u001b[0mdf\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mspark\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msql\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mraw_to_wide\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     22\u001b[0m \u001b[0mdf\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwrite\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mparquet\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"s3://b2c-prod-data-pipeline-qa/t_old_data\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/lib/spark/python/lib/pyspark.zip/pyspark/sql/session.py\u001b[0m in \u001b[0;36msql\u001b[0;34m(self, sqlQuery)\u001b[0m\n\u001b[1;32m    765\u001b[0m         \u001b[0;34m[\u001b[0m\u001b[0mRow\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mf1\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mf2\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34mu'row1'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mRow\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mf1\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m2\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mf2\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34mu'row2'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mRow\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mf1\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m3\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mf2\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34mu'row3'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    766\u001b[0m         \"\"\"\n\u001b[0;32m--> 767\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mDataFrame\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_jsparkSession\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msql\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0msqlQuery\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_wrapped\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    768\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    769\u001b[0m     \u001b[0;34m@\u001b[0m\u001b[0msince\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;36m2.0\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/lib/spark/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m   1255\u001b[0m         \u001b[0manswer\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mgateway_client\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msend_command\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mcommand\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1256\u001b[0m         return_value = get_return_value(\n\u001b[0;32m-> 1257\u001b[0;31m             answer, self.gateway_client, self.target_id, self.name)\n\u001b[0m\u001b[1;32m   1258\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1259\u001b[0m         \u001b[0;32mfor\u001b[0m \u001b[0mtemp_arg\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mtemp_args\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/lib/spark/python/lib/pyspark.zip/pyspark/sql/utils.py\u001b[0m in \u001b[0;36mdeco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m     71\u001b[0m                 \u001b[0;32mraise\u001b[0m \u001b[0mAnalysisException\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m': '\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstackTrace\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     72\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstartswith\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'org.apache.spark.sql.catalyst.parser.ParseException: '\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 73\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mParseException\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m': '\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstackTrace\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     74\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstartswith\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'org.apache.spark.sql.streaming.StreamingQueryException: '\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     75\u001b[0m                 \u001b[0;32mraise\u001b[0m \u001b[0mStreamingQueryException\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m': '\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstackTrace\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mParseException\u001b[0m: \"\\nmismatched input 'PIVOT' expecting <EOF>(line 9, pos 43)\\n\\n== SQL ==\\n\\n\\nSELECT  date,\\n        country,\\n        app_id,\\n        platform,\\n        bundle_id,\\n        app_store_notes, banner_image_url, banner_md5, code, company_code, company_id, company_name, company_slug, release_date as current_release_date, description, features, first_release_date, icon_url, icon_md5, language_code, languages, replace(locale, '_', '-') as locale, name, permissions, coalesce(cast(price as  float),0.0) as price, primary_category_code, primary_category_id, promotional_text, release_notes, screenshots_json, screenshots_md5, file_size as size, slug, subtitle, version, status\\n    FROM raw_data  where date='2021-08-29' PIVOT (FIRST(value)\\n-------------------------------------------^^^\\n      FOR field_name IN ('app_store_notes', 'banner_image_url', 'banner_md5', 'code' ,'company_code', 'company_id', 'company_name', 'company_slug', 'release_date', 'description', 'features', 'first_release_date', 'icon_url', 'icon_md5', 'language_code', 'languages', 'locale', 'name', 'permissions', 'price', 'primary_category_code', 'primary_category_id', 'promotional_text', 'release_notes', 'screenshots_json', 'screenshots_md5', 'file_size', 'slug', 'subtitle', 'version', 'status'))\\n\""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_1741256076",
+      "id": "20210819-022032_1435432775",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10345"
+    },
+    {
+      "text": "%pyspark\n\nfrom data_lib.api import arrow_loader\nfrom data_lib.utils.logger import logger\n\nloader = arrow_loader() \nquery = \"select * from student order by grade asc\"\ndf_table = loader.load_sf(query)\nlogger.error(\"NAME \\t AGE \\t GRADE\")\nfor i in range(0, len(df_table)):\n    logger.error(df_table[\"NAME\"][i].as_py() + \"\\t\" + str(df_table[\"AGE\"][i].as_py()) + \"\\t\" + str(df_table[\"GRADE\"][i].as_py()))",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "NAME \t AGE \t GRADE\nZhangSan\t20\t1\nLiSi\t22\t2\nWangWu\t23\t3\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-113672830",
+      "id": "20210819-024809_1656747054",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10346"
+    },
+    {
+      "text": "%pyspark\n\nfrom data_lib.api import pd_loader\nfrom data_lib.utils.logger import logger\n\nloader = pd_loader() \nquery = \"select * from student order by grade asc\"\ndf_table = loader.load_sf(query)\nlogger.error(df_table.head())\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "   AGE  GRADE      NAME\n0   20      1  ZhangSan\n1   22      2      LiSi\n2   23      3    WangWu\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-574787578",
+      "id": "20210819-025757_1911579502",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10347"
+    },
+    {
+      "text": "%pyspark\nspark.sparkContext.addPyFile(\"s3://b2c-prod-dca-bdp-data/BDP-PROD-APP-INT-QA/bdp/user_data/application_name=aa_data_test_app/application_code/version=latest/code/bdp_resources/usr/lib/spark/python/dependencies.zip\")\n\nfrom data_lib.api import pd_loader\nfrom data_lib.utils.logger import logger\n\nloader = pd_loader() \nquery = \"select * from student order by grade asc\"\ndf_table = loader.load_aurora(query)\nlogger.error(df_table.head())",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "/opt/anaconda3/lib/python3.7/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use \"pip install psycopg2-binary\" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.\n  \"\"\")\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mOperationalError\u001b[0m                          Traceback (most recent call last)\n\u001b[0;32m<ipython-input-8-2fd2ca41ae3c>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0mloader\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mpd_loader\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      7\u001b[0m \u001b[0mquery\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m\"select * from student order by grade asc\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 8\u001b[0;31m \u001b[0mdf_table\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mloader\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mload_aurora\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mquery\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      9\u001b[0m \u001b[0mlogger\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0merror\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdf_table\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhead\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/tmp/spark-d6116da2-12ba-4c67-8ac6-2b54dc15dd4e/userFiles-7db98195-aa75-410b-b43e-cd0094939ac6/dependencies.zip/data_lib/operator/pd_loader.py\u001b[0m in \u001b[0;36mload_aurora\u001b[0;34m(self, query, aurora_options)\u001b[0m\n\u001b[1;32m     45\u001b[0m         conn_str = \"dbname='{}' user='{}' host='{}' port='{}' password='{}'\".format(db_name, aurora_options[\"user\"],\n\u001b[1;32m     46\u001b[0m             host_port_arr[0], host_port_arr[1], aurora_options[\"password\"])\n\u001b[0;32m---> 47\u001b[0;31m         \u001b[0mengine\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mpg\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mconnect\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mconn_str\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     48\u001b[0m         \u001b[0mpd_df\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread_sql\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mquery\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcon\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mengine\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     49\u001b[0m         \u001b[0mengine\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mclose\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/opt/anaconda3/lib/python3.7/site-packages/psycopg2/__init__.py\u001b[0m in \u001b[0;36mconnect\u001b[0;34m(dsn, connection_factory, cursor_factory, **kwargs)\u001b[0m\n\u001b[1;32m    128\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    129\u001b[0m     \u001b[0mdsn\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0m_ext\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmake_dsn\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdsn\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 130\u001b[0;31m     \u001b[0mconn\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0m_connect\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdsn\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mconnection_factory\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mconnection_factory\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwasync\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    131\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0mcursor_factory\u001b[0m \u001b[0;32mis\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    132\u001b[0m         \u001b[0mconn\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcursor_factory\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mcursor_factory\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mOperationalError\u001b[0m: could not connect to server: Connection timed out\n\tIs the server running on host \"52.54.137.163\" and accepting\n\tTCP/IP connections on port 5432?\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-1312379120",
+      "id": "20211130-063143_800270970",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10348"
+    },
+    {
+      "text": "%pyspark\nfrom data_lib.api import  spark_loader\nloader = spark_loader(spark)\np_path = \"s3://b2c-prod-data-pipeline-qa/fredric_localized_sample_apps/\"\ndf = loader.load_parquet_as_table(p_path, \"localized_detail_sample\")\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)\n\u001b[0;32m<ipython-input-3-31468b64e470>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mdata_lib\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mapi\u001b[0m \u001b[0;32mimport\u001b[0m  \u001b[0mspark_loader\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0mloader\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mspark_loader\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mspark\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0mp_path\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m\"s3://b2c-prod-data-pipeline-qa/fredric_localized_sample_apps/\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0mdf\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mloader\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mload_parquet_as_table\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mp_path\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"localized_detail_sample\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'data_lib'"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_1896199982",
+      "id": "20210819-033109_177582470",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10349"
+    },
+    {
+      "text": "%sh\n\naws s3 ls s3://aardvark-prod-dca-data/fact/MKT_AD_REVENUE/version=1.0.0/range_type=WEEK/date=2021-10-02/platform=ios/\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "2021-11-24 10:22:01          0 _SUCCESS\n2021-11-24 10:22:00     170166 part-00000-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     170902 part-00001-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     173375 part-00002-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     169580 part-00004-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     172006 part-00005-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     167176 part-00006-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     167483 part-00012-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     167748 part-00013-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     168897 part-00014-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     167902 part-00016-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     168241 part-00017-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     169616 part-00018-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     166616 part-00021-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     171231 part-00022-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     170454 part-00025-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     168857 part-00028-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     167780 part-00031-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     173462 part-00032-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     168370 part-00034-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n2021-11-24 10:22:00     171035 part-00037-963de7f7-f4ea-49f5-8d76-92f36c7cbcb4.c000.snappy.parquet\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-311898558",
+      "id": "20210819-032333_1696546284",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10350"
+    },
+    {
+      "text": "%pyspark\ndf = spark.read.parquet(\"s3://aardvark-prod-dca-data/fact/MKT_AD_REVENUE/version=1.0.0/range_type=WEEK\")\n# SQL  \ndf.createOrReplaceTempView(\"raw_data\")\n\nproduct_1_df = spark.sql(\"select * from raw_data where product_id=20600000112326\")\nproduct_1_df.show(100, False)\n\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------+--------------+------------+-----------+-----------+-------+-------------------+--------+----------------+----------+--------+\n|    product_id|ad_platform_id|country_code|category_id|device_code|ad_type|    pub_est_revenue|with_sdk|with_pub_app_sov|      date|platform|\n+--------------+--------------+------------+-----------+-----------+-------+-------------------+--------+----------------+----------+--------+\n|20600000112326|             1|          CA|         40|android-all|  other|  251.4006599190445|    true|           false|2021-10-02| android|\n|20600000112326|           101|          CA|         40|android-all|  video| 19.338120677416164|    true|           false|2021-10-02| android|\n|20600000112326|           121|          GB|         40|android-all|  video|   2.92558260268604|    true|           false|2021-10-02| android|\n|20600000112326|             1|          GB|         40|android-all|  video|   2.92558260268604|    true|           false|2021-10-02| android|\n|20600000112326|           101|          AU|         40|android-all|  other|  712.2178876726482|    true|           false|2021-08-28| android|\n|20600000112326|           112|          GB|         40|android-all|  video|0.48388524983795367|    true|           false|2021-08-28| android|\n|20600000112326|             1|          GB|         40|android-all|  video|0.07560707028718025|    true|           false|2021-08-28| android|\n|20600000112326|           121|          CA|         40|android-all|  video| 0.3084525840526378|    true|           false|2021-08-28| android|\n|20600000112326|           112|          CA|         40|android-all|  video|0.16093178298398494|    true|           false|2021-08-28| android|\n|20600000112326|           121|          CA|         40|android-all|  video| 0.6965932711275402|    true|           false|2021-08-21| android|\n|20600000112326|             1|          CA|         40|android-all|  other| 499.02508391304895|    true|           false|2021-08-21| android|\n|20600000112326|           101|          AU|         40|android-all|  other|  708.1823994398252|    true|           false|2021-08-21| android|\n|20600000112326|             1|          CA|         40|android-all|  video| 1.4926998667018718|    true|           false|2021-08-21| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 0.7764584591088238|    true|           false|2021-08-21| android|\n|20600000112326|           101|          AU|         40|android-all|  video| 0.7764584591088238|    true|           false|2021-08-21| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 2.4751741331603476|    true|           false|2021-10-23| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 2.4751741331603476|    true|           false|2021-10-23| android|\n|20600000112326|           121|          AU|         40|android-all|  video| 2.4751741331603476|    true|           false|2021-10-23| android|\n|20600000112326|             1|          CA|         40|android-all|  other|  35.81588936115704|    true|           false|2021-10-23| android|\n|20600000112326|           101|          AU|         40|android-all|  video|  5.775406310707478|    true|           false|2021-10-23| android|\n|20600000112326|           112|          CA|         40|android-all|  video| 3.1781556325012765|    true|           false|2021-10-23| android|\n|20600000112326|             1|          CA|         40|android-all|  video| 3.1781556325012765|    true|           false|2021-10-23| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 1.4362582669512003|    true|           false|2021-08-21| android|\n|20600000112326|             1|          GB|         40|android-all|  other|  224.4516541805744|    true|           false|2021-08-21| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 1.2152954566510155|    true|           false|2021-08-21| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 0.3718556947566185|    true|           false|2021-08-28| android|\n|20600000112326|             1|          CA|         40|android-all|  other|  634.4479088181079|    true|           false|2021-08-28| android|\n|20600000112326|           101|          GB|         40|android-all|  other| 115.84861257170682|    true|           false|2021-08-28| android|\n|20600000112326|           116|          CA|         40|android-all|  video|0.06705490957666038|    true|           false|2021-08-28| android|\n|20600000112326|             1|          CA|         40|android-all|  video| 0.4375730267860505|    true|           false|2021-10-30| android|\n|20600000112326|           112|          CA|         40|android-all|  video| 1.3127190803581514|    true|           false|2021-10-30| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 63.575944237002396|    true|           false|2021-10-30| android|\n|20600000112326|             1|          AU|         40|android-all|  video|  8.581596651406914|    true|           false|2021-10-30| android|\n|20600000112326|           101|          CA|         40|android-all|  video|  1.750292107144202|    true|           false|2021-10-30| android|\n|20600000112326|           112|          AU|         40|android-all|  video|  8.581596651406914|    true|           false|2021-10-30| android|\n|20600000112326|             1|          AU|         40|android-all|  video|  5.148957990844147|    true|           false|2021-10-30| android|\n|20600000112326|           121|          AU|         40|android-all|  video|  3.432638660562765|    true|           false|2021-10-30| android|\n|20600000112326|           116|          CA|         40|android-all|  video| 0.4375730267860505|    true|           false|2021-10-30| android|\n|20600000112326|             1|          CA|         40|android-all|  other| 29.320370401460302|    true|           false|2021-10-30| android|\n|20600000112326|             1|          CA|         40|android-all|  video| 1.5481825866568497|    true|           false|2021-10-16| android|\n|20600000112326|           121|          AU|         40|android-all|  video| 0.6872102273845818|    true|           false|2021-10-16| android|\n|20600000112326|             1|          AU|         40|android-all|  other|   585.922957753557|    true|           false|2021-10-16| android|\n|20600000112326|             1|          AU|         40|android-all|  video|  0.589037337758213|    true|           false|2021-10-16| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 0.7853831170109505|    true|           false|2021-10-16| android|\n|20600000112326|           101|          CA|         40|android-all|  other| 302.87370757440715|    true|           false|2021-09-18| android|\n|20600000112326|             1|          AU|         40|android-all|  other|  990.9137668093276|    true|           false|2021-09-25| android|\n|20600000112326|           121|          AU|         40|android-all|  video| 3.7532735421925905|    true|           false|2021-09-25| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 18.453303581434465|    true|           false|2021-09-25| android|\n|20600000112326|           121|          GB|         40|android-all|  video| 2.7679955372151697|    true|           false|2021-09-25| android|\n|20600000112326|             1|          GB|         40|android-all|  video|  3.075550596905744|    true|           false|2021-09-25| android|\n|20600000112326|             1|          AU|         40|android-all|  other| 145.19035526370786|    true|           false|2021-10-23| android|\n|20600000112326|           121|          CA|         40|android-all|  video|0.45402223321446805|    true|           false|2021-10-23| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 1.5182337202271454|    true|           false|2021-10-23| android|\n|20600000112326|           101|          GB|         40|android-all|  video| 2.0243116269695274|    true|           false|2021-10-23| android|\n|20600000112326|           112|          AU|         40|android-all|  video| 1.4560218782079515|    true|           false|2021-10-09| android|\n|20600000112326|           112|          CA|         40|android-all|  video|  4.180166699803904|    true|           false|2021-10-09| android|\n|20600000112326|             1|          GB|         40|android-all|  video|0.46106467749614183|    true|           false|2021-10-09| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 1.4560218782079515|    true|           false|2021-10-09| android|\n|20600000112326|             1|          CA|         40|android-all|  video|  8.360333399607809|    true|           false|2021-10-09| android|\n|20600000112326|           101|          CA|         40|android-all|  video|  19.40791682051813|    true|           false|2021-10-09| android|\n|20600000112326|           121|          CA|         40|android-all|  video| 0.2814877430285181|    true|           false|2021-10-16| android|\n|20600000112326|             1|          CA|         40|android-all|  video|0.18765849535234538|    true|           false|2021-10-16| android|\n|20600000112326|           112|          CA|         40|android-all|  video|0.18765849535234538|    true|           false|2021-10-16| android|\n|20600000112326|           101|          AU|         40|android-all|  other|   585.922957753557|    true|           false|2021-10-16| android|\n|20600000112326|           112|          GB|         40|android-all|  video|  46.80932164297664|    true|           false|2021-10-02| android|\n|20600000112326|           121|          AU|         40|android-all|  video| 3.6651252258397506|    true|           false|2021-10-02| android|\n|20600000112326|             1|          AU|         40|android-all|  other| 356.77015333651286|    true|           false|2021-10-02| android|\n|20600000112326|           101|          GB|         40|android-all|  other|  66.76177049431756|    true|           false|2021-10-16| android|\n|20600000112326|           112|          AU|         40|android-all|  video|  0.589037337758213|    true|           false|2021-10-16| android|\n|20600000112326|           101|          AU|         40|android-all|  video| 0.7853831170109505|    true|           false|2021-10-16| android|\n|20600000112326|           121|          GB|         40|android-all|  video| 0.3417976631376687|    true|           false|2021-10-16| android|\n|20600000112326|           112|          GB|         40|android-all|  video|  2.392583641963681|    true|           false|2021-10-16| android|\n|20600000112326|           101|          CA|         40|android-all|  other| 132.36337665646687|    true|           false|2021-10-16| android|\n|20600000112326|             1|          CA|         40|android-all|  video| 0.2814877430285181|    true|           false|2021-10-16| android|\n|20600000112326|             1|          GB|         40|android-all|  video|  2.392583641963681|    true|           false|2021-10-16| android|\n|20600000112326|             1|          GB|         40|android-all|  other|  66.76177049431756|    true|           false|2021-10-16| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 0.3417976631376687|    true|           false|2021-10-16| android|\n|20600000112326|             1|          AU|         40|android-all|  video| 0.6872102273845818|    true|           false|2021-10-16| android|\n|20600000112326|           121|          GB|         40|android-all|  video|  2.825597521644551|    true|           false|2021-10-30| android|\n|20600000112326|             1|          CA|         40|android-all|  video|  0.875146053572101|    true|           false|2021-10-30| android|\n|20600000112326|           101|          CA|         40|android-all|  video| 1.5481825866568497|    true|           false|2021-10-16| android|\n|20600000112326|             1|          CA|         40|android-all|  other| 132.36337665646687|    true|           false|2021-10-16| android|\n|20600000112326|             1|          CA|         40|android-all|  other| 240.56532109057812|    true|           false|2021-10-09| android|\n|20600000112326|           101|          CA|         40|android-all|  other| 29.320370401460302|    true|           false|2021-10-30| android|\n|20600000112326|             1|          CA|         40|android-all|  video| 1.3127190803581514|    true|           false|2021-10-30| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 3.2965304419186428|    true|           false|2021-10-30| android|\n|20600000112326|           101|          AU|         40|android-all|  video|  5.148957990844147|    true|           false|2021-10-30| android|\n|20600000112326|             1|          CA|         40|android-all|  video|  1.750292107144202|    true|           false|2021-10-30| android|\n|20600000112326|           101|          CA|         40|android-all|  other| 368.55147414030057|    true|           false|2021-09-04| android|\n|20600000112326|             1|          GB|         40|android-all|  video|                0.0|    true|           false|2021-09-04| android|\n|20600000112326|           101|          GB|         40|android-all|  video|                0.0|    true|           false|2021-09-04| android|\n|20600000112326|           121|          CA|         40|android-all|  video|                0.0|    true|           false|2021-09-04| android|\n|20600000112326|             1|          GB|         40|android-all|  video|                0.0|    true|           false|2021-09-04| android|\n|20600000112326|           112|          CA|         40|android-all|  video|                0.0|    true|           false|2021-09-04| android|\n|20600000112326|           101|          AU|         40|android-all|  other|  261.4412319158355|    true|           false|2021-09-18| android|\n|20600000112326|           112|          AU|         40|android-all|  video| 1.1551018532110937|    true|           false|2021-09-18| android|\n|20600000112326|             1|          GB|         40|android-all|  video|  5.852118381084661|    true|           false|2021-09-18| android|\n|20600000112326|             1|          GB|         40|android-all|  video| 0.1726577086929386|    true|           false|2021-09-11| android|\n|20600000112326|           101|          GB|         40|android-all|  video|  3.075550596905744|    true|           false|2021-09-25| android|\n|20600000112326|           112|          AU|         40|android-all|  video| 0.4691591927740738|    true|           false|2021-09-25| android|\n+--------------+--------------+------------+-----------+-----------+-------+-------------------+--------+----------------+----------+--------+\nonly showing top 100 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-1829792983",
+      "id": "20211130-100540_2119286650",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10351"
+    },
+    {
+      "text": "%pyspark\n\nSNOWFLAKE_SOURCE_NAME = \"net.snowflake.spark.snowflake\"\n\nSF_OPTIONS = {\n    \"sfURL\": \"appannie_aa_int_prod.us-east-1.snowflakecomputing.com\",\n    \"sfUser\": \"app_bdp_data_validation_qa\",\n    \"sfPassword\": \"0HN#s@Wa5$1R8jVj\",\n    \"sfDatabase\": \"AA_INTELLIGENCE_PRODUCTION\",\n    \"sfWarehouse\": \"wh_dod_read7\"\n}\n\ndf = spark.read.format(SNOWFLAKE_SOURCE_NAME) \\\n            .options(**SF_OPTIONS) \\\n            .option(\"query\", \"select distinct(date) from AA_INTELLIGENCE_PRODUCTION.ADL_MARKET_PAID.FACT_MARKET_AD_REVENUE_FINAL_V1_CLUSTER_BY_DATE\") \\\n            .load()\n\ndf.createOrReplaceTempView(\"snow_data\")\n\ndf.show(10, False)\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.hadoop.ipc.RemoteException(java.io.IOException): File /user/hadoop/.sparkStaging/application_1638416459220_0006/__spark_libs__7747219302124953087.zip could only be replicated to 0 nodes instead of minReplication (=1).  There are 0 datanode(s) running and no node(s) are excluded in this operation.\n\tat org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.chooseTarget4NewBlock(BlockManager.java:1735)\n\tat org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.chooseTargetForNewBlock(FSDirWriteFileOp.java:265)\n\tat org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2575)\n\tat org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:829)\n\tat org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:510)\n\tat org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)\n\tat org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)\n\tat org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)\n\tat org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:850)\n\tat org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:793)\n\tat java.security.AccessController.doPrivileged(Native Method)\n\tat javax.security.auth.Subject.doAs(Subject.java:422)\n\tat org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1844)\n\tat org.apache.hadoop.ipc.Server$Handler.run(Server.java:2489)\n\n\tat org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1489)\n\tat org.apache.hadoop.ipc.Client.call(Client.java:1435)\n\tat org.apache.hadoop.ipc.Client.call(Client.java:1345)\n\tat org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:227)\n\tat org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:116)\n\tat com.sun.proxy.$Proxy36.addBlock(Unknown Source)\n\tat org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.addBlock(ClientNamenodeProtocolTranslatorPB.java:444)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:409)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeMethod(RetryInvocationHandler.java:163)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invoke(RetryInvocationHandler.java:155)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeOnce(RetryInvocationHandler.java:95)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:346)\n\tat com.sun.proxy.$Proxy37.addBlock(Unknown Source)\n\tat org.apache.hadoop.hdfs.DataStreamer.locateFollowingBlock(DataStreamer.java:1838)\n\tat org.apache.hadoop.hdfs.DataStreamer.nextBlockOutputStream(DataStreamer.java:1638)\n\tat org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:704)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-549356824",
+      "id": "20211130-100906_2074268672",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10352"
+    },
+    {
+      "text": "%pyspark\n\nspark.sparkContext.addPyFile(\"s3://b2c-prod-dca-bdp-data/BDP-PROD-APP-INT-QA/bdp/user_data/application_name=aa_data_test_app/application_code/version=latest/code/bdp_resources/usr/lib/spark/python/dependencies.zip\")\n\nfrom data_lib.api import  spark_loader\n\nloader = spark_loader(spark)\ndf = loader.load_sf_as_table(\"select * from AA_INTELLIGENCE_PRODUCTION.ADL_MARKET_PAID.FACT_MARKET_AD_REVENUE_FINAL_V1_CLUSTER_BY_DATE limit 100000\", \"ad_revenue_final\")\ndf_date = spark.sql(\"select distinct(date) from ad_revenue_final\")\ndf_date.show(10)",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+\n|      date|\n+----------+\n|2021-10-02|\n+----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-2121880628",
+      "id": "20211130-105601_1261055977",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10353"
+    },
+    {
+      "text": "%pyspark\n",
+      "dateUpdated": "2022-03-15T06:29:44+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": { "params": {}, "forms": {} },
+      "apps": [],
+      "jobName": "paragraph_1647325784397_-524769257",
+      "id": "20211202-033058_158293856",
+      "dateCreated": "2022-03-15T06:29:44+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:10354"
+    }
+  ],
+  "name": "/Fredric/Localized_App_Detail",
+  "id": "2GF45S8NC",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": { "spark:fzhu:2GF45S8NC": [] },
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "true"
+  },
+  "info": {}
+}

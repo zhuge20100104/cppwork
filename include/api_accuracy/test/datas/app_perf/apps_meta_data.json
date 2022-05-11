@@ -1,0 +1,54 @@
+{
+    "facets": ["product_id"],
+    "filters": {
+        "product_id": {
+            "equal": ${product_id}
+        },
+        "granularity": {
+            "equal": "${granularity}"
+        },
+        "date": {
+            "between": [
+              "${start_date}",
+              "${end_date}"
+            ]
+        },
+        "country_code": {
+            "in": ${country_code}
+        }
+    },
+    "fields": {
+        "product_id": {
+            "fields": [
+                "name",
+                "market_code",
+                "device_code",
+                "description",
+                "price",
+                "has_iap",
+                "unified_product_id",
+                "category_id",
+                "publisher_id"
+            ],
+            "publisher_id": {
+                "fields": [
+                    "name",
+                    "market_code",
+                    "website",
+                    "company_id"
+                ],
+                "company_id": {
+                    "fields": [
+                        "name",
+                        "exchange",
+                        "ticker_symbol",
+                        "website",
+                        "is_public_company",
+                        "country_code"
+                    ]
+                }
+            },
+            "category_id": {"fields": ["name", "slug"]}
+        }
+    }
+}

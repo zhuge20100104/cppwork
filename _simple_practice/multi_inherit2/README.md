@@ -1,0 +1,1 @@
+Multi-inheritance same base member, vb pointer demo.

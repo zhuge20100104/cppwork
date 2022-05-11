@@ -1,0 +1,33 @@
+{
+  "facets": [
+    "est_ad_revenue__sum",
+    "est_revenue__sum",
+    "est_total_revenue__sum"
+  ],
+  "filters": {
+    "granularity": { "equal": "weekly" },
+    "date": { "between": ["2021-06-27", "2021-12-11"] },
+    "device_code": { "equal": "ios-all" },
+    "country_code": { "equal": "US" },
+    "vertical_code": { "equal": "app" },
+    "ad_platform_id": { "equal": 1 },
+    "ad_revenue_ad_type": { "equal": "all" },
+    "category_id": { "equal": 100000 }
+  },
+  "breakdowns": { "product_id": {} },
+  "pagination": { "offset": 0, "limit": 1000 },
+  "order_by": [{ "name": "est_ad_revenue__sum", "order": "desc" }],
+  "fields": {
+    "product_id": {
+      "fields": [
+        "name",
+        "icon_url",
+        "device_code",
+        "market_code",
+        "vertical_code",
+        "is_sensitive",
+        "status"
+      ]
+    }
+  }
+}

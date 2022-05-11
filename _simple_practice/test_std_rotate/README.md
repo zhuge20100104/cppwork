@@ -1,0 +1,1 @@
+std::rotate algorithm test.

@@ -1,0 +1,35 @@
+{
+    "facets": [
+      "est_demographics_percent__aggr",
+      "est_demographics_index__aggr"
+    ],
+    "filters": {
+      "product_id": {
+        "equal": ${product_id}
+      },
+      "granularity": {
+        "equal": "${granularity}"
+      },
+      "vertical_code": {
+        "equal": "app"
+      },
+      "date": {
+        "between": [
+          "${start_date}",
+          "${end_date}"
+        ]
+      },
+      "country_code": {
+        "in": ${country_code}
+      },
+      "gender_code": {"in": ["male", "female"]},
+      "age_code": {"equal": "all"}
+    },
+    "breakdowns": {
+      "product_id": {},
+      "device_code": {},
+      "country_code": {},
+      "date": {},
+      "gender_code": {}
+    }
+  }

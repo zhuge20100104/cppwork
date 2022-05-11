@@ -1,0 +1,35 @@
+{
+    "facets": [
+      "est_demographics_percent__aggr",
+      "est_demographics_index__aggr"
+    ],
+    "filters": {
+      "product_id": {
+        "equal": ${product_id}
+      },
+      "vertical_code": {
+        "equal": "app"
+      },
+      "granularity": {
+        "equal": "${granularity}"
+      },
+      "date": {
+        "between": [
+          "${start_date}",
+          "${end_date}"
+        ]
+      },
+      "country_code": {
+        "in": ${country_code}
+      },
+      "gender_code": {"equal": "all"},
+      "age_code": {"in": ["lt25", "gte25_lte44", "gt44"]}
+    },
+    "breakdowns": {
+      "product_id": {},
+      "device_code": {},
+      "country_code": {},
+      "date": {},
+      "age_code": {}
+    }
+  }

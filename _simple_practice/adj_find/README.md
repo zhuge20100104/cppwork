@@ -1,0 +1,1 @@
+std::adjcent_find algorithm demo.

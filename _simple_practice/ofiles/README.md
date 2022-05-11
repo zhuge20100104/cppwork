@@ -1,0 +1,1 @@
+Std::ofstream std::shared_ptr wrapper.

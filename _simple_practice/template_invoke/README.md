@@ -1,0 +1,1 @@
+Template function invoke priority demo.

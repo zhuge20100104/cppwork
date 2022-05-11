@@ -1,0 +1,1 @@
+Header and cpp in the same file, called hpp.

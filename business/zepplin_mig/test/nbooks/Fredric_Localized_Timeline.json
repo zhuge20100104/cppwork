@@ -1,0 +1,178 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%pyspark\n\n\n## Convert narrow table to wide table\n\ndef narrow_to_wide(raw_table_name, data_range,  dst_s3_name):\n    sql_date = '''\n        select * from {} where date='{}' \n    '''.format(raw_table_name, data_range[0])\n    \n\n    df_date = spark.sql(sql_date)\n    df_date.createOrReplaceTempView(\"df_date\")\n    raw_to_wide = '''\n    \n    SELECT  date,\n            country,\n            app_id,\n            platform,\n            bundle_id,\n            app_store_notes, banner_image_url, banner_md5, code, company_code, company_id, company_name, company_slug, release_date as current_release_date, description, features, first_release_date, icon_url, icon_md5, language_code, languages, replace(locale, '_', '-') as locale, name, permissions, coalesce(cast(price as  float),0.0) as price, primary_category_code, primary_category_id, promotional_text, release_notes, screenshots_json, screenshots_md5, file_size as size, slug, subtitle, version, status\n        FROM {} PIVOT (FIRST(value)\n          FOR field_name IN ('app_store_notes', 'banner_image_url', 'banner_md5', 'code' ,'company_code', 'company_id', 'company_name', 'company_slug', 'release_date', 'description', 'features', 'first_release_date', 'icon_url', 'icon_md5', 'language_code', 'languages', 'locale', 'name', 'permissions', 'price', 'primary_category_code', 'primary_category_id', 'promotional_text', 'release_notes', 'screenshots_json', 'screenshots_md5', 'file_size', 'slug', 'subtitle', 'version', 'status'))\n    '''\n    \n    raw_to_wide = raw_to_wide.format(\"df_date\")\n    df = spark.sql(raw_to_wide)\n    dst_s3_path = \"s3://b2c-prod-data-pipeline-qa/{}\".format(dst_s3_name)\n    df.write.mode(\"overwrite\").parquet(dst_s3_path)\n\n\ndf = spark.read.parquet(\"s3://aardvark-prod-dca-data/interface/localized_app_detail/\")\ndf.createOrReplaceTempView(\"raw\")\n\n\nnarrow_to_wide(\"raw\", [\"2021-08-29\"], \"timeline_old\")\nnarrow_to_wide(\"raw\", [\"2021-09-02\"], \"timeline_new\")\n\n",
+      "user": "jvinoth",
+      "dateUpdated": "2021-12-03T04:57:49+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.hadoop.ipc.RemoteException(java.io.IOException): File /user/hadoop/.sparkStaging/application_1638497363061_0019/__spark_libs__8756463598705932953.zip could only be replicated to 0 nodes instead of minReplication (=1).  There are 0 datanode(s) running and no node(s) are excluded in this operation.\n\tat org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.chooseTarget4NewBlock(BlockManager.java:1735)\n\tat org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.chooseTargetForNewBlock(FSDirWriteFileOp.java:265)\n\tat org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2575)\n\tat org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:829)\n\tat org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:510)\n\tat org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)\n\tat org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)\n\tat org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)\n\tat org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:850)\n\tat org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:793)\n\tat java.security.AccessController.doPrivileged(Native Method)\n\tat javax.security.auth.Subject.doAs(Subject.java:422)\n\tat org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1844)\n\tat org.apache.hadoop.ipc.Server$Handler.run(Server.java:2489)\n\n\tat org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1489)\n\tat org.apache.hadoop.ipc.Client.call(Client.java:1435)\n\tat org.apache.hadoop.ipc.Client.call(Client.java:1345)\n\tat org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:227)\n\tat org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:116)\n\tat com.sun.proxy.$Proxy36.addBlock(Unknown Source)\n\tat org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.addBlock(ClientNamenodeProtocolTranslatorPB.java:444)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:409)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeMethod(RetryInvocationHandler.java:163)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invoke(RetryInvocationHandler.java:155)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeOnce(RetryInvocationHandler.java:95)\n\tat org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:346)\n\tat com.sun.proxy.$Proxy37.addBlock(Unknown Source)\n\tat org.apache.hadoop.hdfs.DataStreamer.locateFollowingBlock(DataStreamer.java:1838)\n\tat org.apache.hadoop.hdfs.DataStreamer.nextBlockOutputStream(DataStreamer.java:1638)\n\tat org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:704)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1631933830855_352526521",
+      "id": "20210918-025710_1878580738",
+      "dateCreated": "2021-09-18T02:57:10+0000",
+      "dateStarted": "2021-12-03T04:57:49+0000",
+      "dateFinished": "2021-12-03T04:58:08+0000",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:29067"
+    },
+    {
+      "text": "%pyspark\n\nold_df = spark.read.parquet(\"s3://b2c-prod-data-pipeline-qa/timeline_old\")\nnew_df = spark.read.parquet(\"s3://b2c-prod-data-pipeline-qa/timeline_new\")\n\nold_df.createOrReplaceTempView(\"old_df\")\nnew_df.createOrReplaceTempView(\"new_df\")\n\nold_df.printSchema()\n\nevent_field_and_key_map = {\n    \"size\": 15,\n    \"name\": 3,\n    \"company_name\": 33,\n    \"version\": 1,\n    \"price\": 2,\n    \"screenshots_md5\": 40,\n    \"description\": 39,\n    \"icon_md5\": 12\n}\n\nevent_df = None\nfor (field, event_key) in event_field_and_key_map.items():\n    timeline_src_sql = '''\n    select t1.*, new_value, {} as event_type_key from\n        (select app_id as product_key, locale, country as country_key, platform, {} as old_value from old_df) t1\n        left join \n        (select app_id as product_key, locale, country as country_key, platform, {} as new_value from new_df) t2\n        on  \n            t1.product_key = t2.product_key\n            AND t1.locale = t2.locale\n            AND t1.country_key = t2.country_key\n            AND t1.platform = t2.platform\n        where (t1.old_value != t2.new_value)\n    '''.format(event_key, field, field)\n    tmp_df = spark.sql(timeline_src_sql)\n    if event_df is None:\n        event_df = tmp_df\n    else:\n        event_df = event_df.union(tmp_df)\n\nevent_df.write.mode(\"overwrite\").parquet(\"s3://b2c-prod-data-pipeline-qa/timeline_data\")\n    \n\n\nprint(event_df.count())\n\nevent_df.show(10, False)\n",
+      "user": "fzhu",
+      "dateUpdated": "2021-09-24T08:07:16+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- date: date (nullable = true)\n |-- country: string (nullable = true)\n |-- app_id: long (nullable = true)\n |-- platform: string (nullable = true)\n |-- bundle_id: string (nullable = true)\n |-- app_store_notes: string (nullable = true)\n |-- banner_image_url: string (nullable = true)\n |-- banner_md5: string (nullable = true)\n |-- code: string (nullable = true)\n |-- company_code: string (nullable = true)\n |-- company_id: string (nullable = true)\n |-- company_name: string (nullable = true)\n |-- company_slug: string (nullable = true)\n |-- current_release_date: string (nullable = true)\n |-- description: string (nullable = true)\n |-- features: string (nullable = true)\n |-- first_release_date: string (nullable = true)\n |-- icon_url: string (nullable = true)\n |-- icon_md5: string (nullable = true)\n |-- language_code: string (nullable = true)\n |-- languages: string (nullable = true)\n |-- locale: string (nullable = true)\n |-- name: string (nullable = true)\n |-- permissions: string (nullable = true)\n |-- price: double (nullable = true)\n |-- primary_category_code: string (nullable = true)\n |-- primary_category_id: string (nullable = true)\n |-- promotional_text: string (nullable = true)\n |-- release_notes: string (nullable = true)\n |-- screenshots_json: string (nullable = true)\n |-- screenshots_md5: string (nullable = true)\n |-- size: string (nullable = true)\n |-- slug: string (nullable = true)\n |-- subtitle: string (nullable = true)\n |-- version: string (nullable = true)\n |-- status: string (nullable = true)\n\n1013474\n+-----------+------+-----------+--------+---------+---------+--------------+\n|product_key|locale|country_key|platform|old_value|new_value|event_type_key|\n+-----------+------+-----------+--------+---------+---------+--------------+\n|284882215  |es-ES |ES         |iOS     |286919680|288546816|15            |\n|286058814  |fr-FR |FR         |iOS     |219842560|222754816|15            |\n|288429040  |de-CH |CH         |iOS     |305786880|306589696|15            |\n|288429040  |en-EG |EG         |iOS     |305786880|306589696|15            |\n|290853822  |de-CH |CH         |iOS     |97930240 |98138112 |15            |\n|290853822  |zh-CN |CN         |iOS     |97930240 |98138112 |15            |\n|296987450  |ar-KW |KW         |iOS     |49944576 |49858560 |15            |\n|297368629  |en-PK |PK         |iOS     |193103872|193146880|15            |\n|297625850  |ko-KR |KR         |iOS     |104585216|115307520|15            |\n|298903147  |no-NO |NO         |iOS     |261958656|261950464|15            |\n+-----------+------+-----------+--------+---------+---------+--------------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1631933909779_1577323928",
+      "id": "20210918-025829_1404841406",
+      "dateCreated": "2021-09-18T02:58:29+0000",
+      "dateStarted": "2021-09-24T08:07:16+0000",
+      "dateFinished": "2021-09-24T08:15:17+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:29068"
+    },
+    {
+      "text": "%pyspark\n\n\ndf = spark.read.parquet(\"s3://b2c-prod-data-pipeline-qa/timeline_data\")\ndf.createOrReplaceTempView(\"timeline\")\nface_df = spark.sql(\"select count(distinct locale) from timeline where platform='Android'\");\nface_df.show(100, False)",
+      "user": "fzhu",
+      "dateUpdated": "2021-09-26T03:45:13+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------------------+\n|count(DISTINCT locale)|\n+----------------------+\n|64                    |\n+----------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1632062186262_-661788733",
+      "id": "20210919-143626_710306283",
+      "dateCreated": "2021-09-19T14:36:26+0000",
+      "dateStarted": "2021-09-26T03:45:13+0000",
+      "dateFinished": "2021-09-26T03:45:46+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:29069"
+    },
+    {
+      "text": "%pyspark\n\ndf = spark.read.parquet(\"s3://b2c-prod-data-pipeline-qa/timeline_data\")\ndf.createOrReplaceTempView(\"timeline\")\n\n\nsql = '''\n    select  distinct product_key as app_id,  country_key as country,locale\n        from timeline\n'''\n\ndf_raw_locale = spark.sql(sql)\n\n# snowflake production\nsfOptions = {\n  \"sfURL\" : \"appannie_aa_int_prod.us-east-1.snowflakecomputing.com\",\n  \"sfUser\" : \"app_bdp_data_validation_qa\",\n  \"sfPassword\" : \"0HN#s@Wa5$1R8jVj\",\n  \"sfDatabase\" : \"AA_INTELLIGENCE_PRODUCTION\",\n  \"sfSchema\" : \"ADL_MASTER\",\n  \"sfWarehouse\" : \"wh_dod_read7\"\n}\nSNOWFLAKE_SOURCE_NAME = \"net.snowflake.spark.snowflake\"\ndf_locale = spark.read.format(SNOWFLAKE_SOURCE_NAME) \\\n  .options(**sfOptions) \\\n  .option(\"query\",  \"select distinct product_key, language_code, country_code from AA_INTELLIGENCE_PRODUCTION.ADL_MASTER.dim_localized_event_service_v1_cluster_by_product_key \") \\\n  .load()\n\n\nres_df = df_raw_locale.join(df_locale, on=[df_raw_locale['app_id']==df_locale['product_key'], df_raw_locale['country']==df_locale['country_code']], how=\"inner\")\n\nfinal_df =  res_df.filter(\"locale is not null and language_code is not null\")\nfinal_df.show(100)\n\n\n",
+      "user": "fzhu",
+      "dateUpdated": "2021-09-26T03:28:44+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": { "params": {}, "forms": {} },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+-------+------+-----------+-------------+------------+\n|   app_id|country|locale|PRODUCT_KEY|LANGUAGE_CODE|COUNTRY_CODE|\n+---------+-------+------+-----------+-------------+------------+\n|286616280|     LT| lt-LT|  286616280|           lt|          LT|\n|290853822|     KW| ar-KW|  290853822|           ar|          KW|\n|290853822|     TW| zh-TW|  290853822|           zh|          TW|\n|294934058|     CN| zh-CN|  294934058|           zh|          CN|\n|294934058|     EG| en-EG|  294934058|           en|          EG|\n|296987450|     BR| pt-BR|  296987450|           pt|          BR|\n|297701471|     AZ| en-AZ|  297701471|           en|          AZ|\n|299219152|     IL| iw-IL|  299219152|           iw|          IL|\n|299853944|     TW| zh-TW|  299853944|           zh|          TW|\n|300548244|     TR| tr-TR|  300548244|           tr|          TR|\n|302584613|     GB| en-GB|  302584613|           en|          GB|\n|305659772|     AZ| en-AZ|  305659772|           en|          AZ|\n|314487667|     BR| pt-BR|  314487667|           pt|          BR|\n|314487667|     ZA| en-ZA|  314487667|           en|          ZA|\n|318133983|     US| en-US|  318133983|           en|          US|\n|327535329|     KE| en-KE|  327535329|           en|          KE|\n|333214491|     IE| en-IE|  333214491|           en|          IE|\n|335187483|     BG| en-BG|  335187483|           en|          BG|\n|338088432|     DK| da-DK|  338088432|           da|          DK|\n|338088432|     FI| fi-FI|  338088432|           fi|          FI|\n|345569411|     KW| ar-KW|  345569411|           ar|          KW|\n|346547065|     CL| es-CL|  346547065|           es|          CL|\n|358640110|     RO| ro-RO|  358640110|           ro|          RO|\n|360593530|     FR| fr-FR|  360593530|           fr|          FR|\n|361319719|     MX| es-MX|  361319719|           es|          MX|\n|362348516|     US| en-US|  362348516|           en|          US|\n|366417871|     PK| en-PK|  366417871|           en|          PK|\n|368217298|     HK| zh-HK|  368217298|           zh|          HK|\n|369649855|     SA| ar-SA|  369649855|           ar|          SA|\n|370362301|     NZ| en-NZ|  370362301|           en|          NZ|\n|370362301|     SA| ar-SA|  370362301|           ar|          SA|\n|375612556|     PE| es-PE|  375612556|           es|          PE|\n|378011496|     ZA| en-ZA|  378011496|           en|          ZA|\n|378084485|     RO| ro-RO|  378084485|           ro|          RO|\n|378352300|     UA| uk-UA|  378352300|           uk|          UA|\n|379968583|     ZA| en-ZA|  379968583|           en|          ZA|\n|380200364|     PL| pl-PL|  380200364|           pl|          PL|\n|380450119|     HK| zh-HK|  380450119|           zh|          HK|\n|380974668|     PL| pl-PL|  380974668|           pl|          PL|\n|381071021|     PK| en-PK|  381071021|           en|          PK|\n|385441876|     PK| en-PK|  385441876|           en|          PK|\n|385919493|     CR| es-CR|  385919493|           es|          CR|\n|387847254|     SG| en-SG|  387847254|           en|          SG|\n|388123359|     CH| de-CH|  388123359|           de|          CH|\n|388614299|     AZ| en-AZ|  388614299|           en|          AZ|\n|391732065|     KE| en-KE|  391732065|           en|          KE|\n|391965015|     FI| fi-FI|  391965015|           fi|          FI|\n|392201590|     AE| en-AE|  392201590|           en|          AE|\n|394618916|     GB| en-GB|  394618916|           en|          GB|\n|398465290|     NZ| en-NZ|  398465290|           en|          NZ|\n|398465290|     SE| sv-SE|  398465290|           sv|          SE|\n|402012828|     AZ| en-AZ|  402012828|           en|          AZ|\n|402012828|     PH| en-PH|  402012828|           en|          PH|\n|402206359|     GB| en-GB|  402206359|           en|          GB|\n|402206359|     NL| nl-NL|  402206359|           nl|          NL|\n|402656416|     PH| en-PH|  402656416|           en|          PH|\n|404059113|     NZ| en-NZ|  404059113|           en|          NZ|\n|404239912|     DK| da-DK|  404239912|           da|          DK|\n|405239907|     KE| en-KE|  405239907|           en|          KE|\n|405239907|     PH| en-PH|  405239907|           en|          PH|\n|406596432|     PT| pt-PT|  406596432|           pt|          PT|\n|412650650|     AZ| en-AZ|  412650650|           en|          AZ|\n|412650650|     ID| id-ID|  412650650|           id|          ID|\n|412650650|     TH| th-TH|  412650650|           th|          TH|\n|414313281|     KR| ko-KR|  414313281|           ko|          KR|\n|414478124|     KZ| ru-KZ|  414478124|           ru|          KZ|\n|415458524|     CZ| cs-CZ|  415458524|           cs|          CZ|\n|416537271|     EG| en-EG|  416537271|           en|          EG|\n|416537271|     GR| el-GR|  416537271|           el|          GR|\n|418786826|     IL| iw-IL|  418786826|           iw|          IL|\n|420455839|     GB| en-GB|  420455839|           en|          GB|\n|421978053|     CO| es-CO|  421978053|           es|          CO|\n|421978053|     TW| zh-TW|  421978053|           zh|          TW|\n|422689480|     SE| sv-SE|  422689480|           sv|          SE|\n|423514795|     MX| es-MX|  423514795|           es|          MX|\n|423514795|     NO| no-NO|  423514795|           no|          NO|\n|425194759|     NG| en-NG|  425194759|           en|          NG|\n|425194759|     TH| th-TH|  425194759|           th|          TH|\n|427984084|     NG| en-NG|  427984084|           en|          NG|\n|431473484|     AZ| en-AZ|  431473484|           en|          AZ|\n|433596395|     CO| es-CO|  433596395|           es|          CO|\n|434209233|     AE| en-AE|  434209233|           en|          AE|\n|434217327|     MX| es-MX|  434217327|           es|          MX|\n|434368191|     HU| hu-HU|  434368191|           hu|          HU|\n|434586962|     SA| ar-SA|  434586962|           ar|          SA|\n|434613896|     LV| en-LV|  434613896|           en|          LV|\n|435072839|     RO| ro-RO|  435072839|           ro|          RO|\n|435463622|     SK| sk-SK|  435463622|           sk|          SK|\n|436145623|     PK| en-PK|  436145623|           en|          PK|\n|436577167|     KZ| ru-KZ|  436577167|           ru|          KZ|\n|438091943|     EG| en-EG|  438091943|           en|          EG|\n|439159270|     KE| en-KE|  439159270|           en|          KE|\n|439655098|     CO| es-CO|  439655098|           es|          CO|\n|439655098|     PT| pt-PT|  439655098|           pt|          PT|\n|440472448|     JP| ja-JP|  440472448|           ja|          JP|\n|440676901|     TR| tr-TR|  440676901|           tr|          TR|\n|441496696|     PH| en-PH|  441496696|           en|          PH|\n|441785419|     SE| sv-SE|  441785419|           sv|          SE|\n|442914988|     PT| pt-PT|  442914988|           pt|          PT|\n|443369807|     BE| fr-BE|  443369807|           fr|          BE|\n+---------+-------+------+-----------+-------------+------------+\nonly showing top 100 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1632469129294_-1122456588",
+      "id": "20210924-073849_1223721733",
+      "dateCreated": "2021-09-24T07:38:49+0000",
+      "dateStarted": "2021-09-26T03:28:44+0000",
+      "dateFinished": "2021-09-26T03:29:21+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:29070"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "fzhu",
+      "dateUpdated": "2021-09-26T03:27:25+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": { "params": {}, "forms": {} },
+      "apps": [],
+      "jobName": "paragraph_1632626845926_567239055",
+      "id": "20210926-032725_1643382849",
+      "dateCreated": "2021-09-26T03:27:25+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:29071"
+    }
+  ],
+  "name": "Fredric/Localized_Timeline",
+  "id": "2GG8U645K",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": { "spark:jvinoth:2GG8U645K": [], "sh:shared_process": [] },
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

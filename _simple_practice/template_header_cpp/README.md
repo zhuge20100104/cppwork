@@ -1,0 +1,1 @@
+Template outside implementation demo.
