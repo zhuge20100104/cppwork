@@ -75,13 +75,20 @@ std::ostream& PrintTensorValue(std::ostream& os, Tensor const& tensor) {
     T const* tensor_pt = tensor.unaligned_flat<T>().data();
     auto size = tensor.NumElements();
     os << std::setprecision(std::numeric_limits<long double>::digits10 + 1);
-    bool is_uint8 = typeid(tensor_pt[0]) == typeid(uint8);
     for(decltype(size) i=0; i<size; ++i) {
-        if(is_uint8) {
-          os << (int)tensor_pt[i] << "\n";
-        }else {
           os << tensor_pt[i] << "\n";
-        }
+    }
+    return os;
+}
+
+template <>
+std::ostream& PrintTensorValue<uint8>(std::ostream& os, Tensor const& tensor) {
+   // 打印Tensor值
+    uint8 const* tensor_pt = tensor.unaligned_flat<uint8>().data();
+    auto size = tensor.NumElements();
+    os << std::setprecision(std::numeric_limits<long double>::digits10 + 1);
+    for(decltype(size) i=0; i<size; ++i) {
+          os << (int)tensor_pt[i] << "\n";
     }
     return os;
 }
@@ -92,20 +99,28 @@ std::ostream& PrintTensorValue(std::ostream& os, Tensor const& tensor, int per_l
     T const* tensor_pt = tensor.unaligned_flat<T>().data();
     auto size = tensor.NumElements();
     os << std::setprecision(std::numeric_limits<long double>::digits10 + 1);
-    bool is_uint8 = typeid(tensor_pt[0]) == typeid(uint8);
     for(decltype(size) i=0; i<size; ++i) {
         if(i!=0 && (i+1)%per_line_count == 0) {  
-          if(is_uint8) {
-            os << (int)tensor_pt[i] << "\n";
-          }else {
             os << tensor_pt[i] << "\n";
-          }
         }else {
-          if(is_uint8) {
-            os << (int)tensor_pt[i] << "\t";
-          }else {
             os << tensor_pt[i] << "\t";
-          }
+        }
+    }
+    return os;
+}
+
+
+template <>
+std::ostream& PrintTensorValue<uint8>(std::ostream& os, Tensor const& tensor, int per_line_count) {
+   // 打印Tensor值
+    uint8 const* tensor_pt = tensor.unaligned_flat<uint8>().data();
+    auto size = tensor.NumElements();
+    os << std::setprecision(std::numeric_limits<long double>::digits10 + 1);
+    for(decltype(size) i=0; i<size; ++i) {
+        if(i!=0 && (i+1)%per_line_count == 0) {  
+            os << (int)tensor_pt[i] << "\n";
+        }else {
+            os << (int)tensor_pt[i] << "\t";
         }
     }
     return os;

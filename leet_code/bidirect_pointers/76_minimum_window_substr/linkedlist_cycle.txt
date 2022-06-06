@@ -1,0 +1,21 @@
+3 - 2 - 0 - 4 
+     |_____|
+
+路径:
+++(++fast)
+++slow 
+fast 0 
+slow 2
+
+fast 2
+slow 0
+
+fast 4
+slow 4
+
+路径2:
+fast 从head重新开始, slow不变
+++fast
+++slow
+fast: 2
+slow：2 

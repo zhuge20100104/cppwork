@@ -66,7 +66,7 @@ class BreadCrumbTests : public testing::Test {
 
     WebDriver initWebDriver() {
         auto caps = Capabilities();
-        caps.SetVersion("93.0.4577.63");
+        caps.SetVersion("89.0.4389.82");
         caps.SetBrowserName(browser::Chrome);
         caps.SetPlatform(platform::Any);
 

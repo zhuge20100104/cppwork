@@ -6,8 +6,9 @@
  dataframe/1.20.0
  opencv/3.4.17
  boost/1.76.0
- abseil/20210324.0
+ abseil/20210324.1
  xtensor/0.23.10
+ zlib/1.2.11
 
  [generators]
  cmake

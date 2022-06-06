@@ -10,7 +10,7 @@ if(APPLE)
     set(CMAKE_PREFIX_PATH  /Users/aabjfzhu/software/vcpkg/ports/cppwork/vcpkg_installed/x64-osx/share)
 elseif(UNIX)
     message(STATUS "This is linux, set CMAKE_PREFIX_PATH.")
-    set(CMAKE_PREFIX_PATH /vcpkg/ports/cppwork/vcpkg_installed/x64-linux/share)
+    set(CMAKE_PREFIX_PATH /home/fredric/software/vcpkg/ports/cppwork/vcpkg_installed/x64-linux/share)
 endif(APPLE)
 
 

@@ -28,19 +28,19 @@ int main(int argc, char** argv) {
 
 WebDriver initWebDriver() {
     auto caps = Capabilities();
-    caps.SetVersion("93.0.4577.63");
+    caps.SetVersion("89.0.4389.82");
     caps.SetBrowserName(browser::Chrome);
     caps.SetPlatform(platform::Any);
     WebDriver driver = Start(Chrome(caps));
     return std::move(driver);
 }
 
-GTEST_TEST(WdTests, TestBaidu) {
+GTEST_TEST(WdTests, TestBing) {
     auto driver = initWebDriver();
-    driver.Navigate("https://www.baidu.com");
-    auto kw = driver.FindElement(ById("kw"));
+    driver.Navigate("https://cn.bing.com");
+    auto kw = driver.FindElement(ById("sb_form_q"));
     kw.SendKeys("Hello");
-    auto su = driver.FindElement(ById("su"));
+    auto su = driver.FindElement(ById("search_icon"));
     su.Click();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     auto source = driver.GetPageSource();
@@ -50,10 +50,10 @@ GTEST_TEST(WdTests, TestBaidu) {
 
 GTEST_TEST(WdTests, TestEventBubble) {
     auto driver = initWebDriver();
-    driver.Navigate("https://www.appannie.com/event_bubbles/timeline/popup/?branding=IN&current_date=1622419200000&start_date=2021-04-01&end_date=2021-08-31&unified_apps=1000600000803861,1000600000509568,1000600000575007,1000600000000441&filter_unified_market=ios,gp");
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    driver.Navigate("https://www.data.ai/en/event_bubbles/timeline/popup/?branding=IN&current_date=1622419200000&start_date=2021-04-01&end_date=2021-08-31&unified_apps=1000600000803861,1000600000509568,1000600000575007,1000600000000441&filter_unified_market=ios,gp");
+    std::this_thread::sleep_for(std::chrono::seconds(15));
 
-    element_finder_ele(driver, ByName("username")).SendKeys("fzhu@appannie.com");
+    element_finder_ele(driver, ByName("username")).SendKeys("fzhu@data.ai");
     driver.FindElement(ByXPath(R"(//input[@placeholder="Password"])")).SendKeys("Lily!870104");
     driver.FindElement(ByXPath(R"(//button[@type="submit"])")).Click();
 
@@ -65,11 +65,11 @@ GTEST_TEST(WdTests, TestEventBubble) {
 
 GTEST_TEST(WdTests, TestAppSummaryLocalized) {
     auto driver = initWebDriver();
-    driver.Navigate("https://www.appannie.com/apps/ios/app/284882215/details?date=!(%272021-07-04%27,%272021-09-25%27)&granularity=daily&country_code=CN");
+    driver.Navigate("https://www.data.ai/en/apps/ios/app/284882215/details?date=!(%272021-07-04%27,%272021-09-25%27)&granularity=daily&country_code=CN");
     
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(15));
 
-    driver.FindElement(ByName("username")).SendKeys("fzhu@appannie.com");
+    driver.FindElement(ByName("username")).SendKeys("fzhu@data.ai");
     driver.FindElement(ByXPath(R"(//input[@placeholder="Password"])")).SendKeys("Lily!870104");
     driver.FindElement(ByXPath(R"(//button[@type="submit"])")).Click();
 
