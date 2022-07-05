@@ -1,0 +1,25 @@
+1.
+A
+""  A
+A  ""
+
+
+2.
+AB
+""  AB 
+A   B
+
+AB  ""
+
+
+3.
+ABC
+"" ABC 
+A  BC 
+AB   C
+ABC   ""
+
+
+dp[0] = true;
+// 空串设置为 true
+

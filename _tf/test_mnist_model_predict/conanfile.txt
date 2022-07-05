@@ -1,6 +1,7 @@
  [requires]
  gtest/1.10.0
  glog/0.4.0
+ zlib/1.2.12
  protobuf/3.9.1
  eigen/3.4.0
  dataframe/1.20.0
