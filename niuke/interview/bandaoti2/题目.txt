@@ -1,0 +1,91 @@
+1. C++ coverage report工具
+gcov 简介和使用方法
+
+安装lcov工具，做可视化覆盖率分析
+sudo dnf install lcov
+
+编译时在CMakeLists.txt文件中加入以下编译选项
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+
+编译，执行elf文件，生成gcda文件
+cmake ..
+make 
+./bdp_dbr_test
+
+执行lcov从./CMakeFiles目录下读取所有gcda文件。生成一个info文件。
+lcov -c -d ./CMakeFiles/  -o bdp_dbr_test.info
+
+根据info文件生成html报告
+genhtml -o  bdp_dbr_test_report bdp_dbr_test.info 
+
+
+原理，
+ 编译期插装。
+ C++编译节点， 预处理，汇编，编译，链接。
+ 在汇编阶段插桩
+
+ 运行期收集。
+
+示例工程
+~/code/cppwork/niuke/interview/bandaoti2/cov_test/
+
+
+2. python coverage report 工具及其使用
+    pytest-cov  
+    pip install pytest-cov
+    
+    pytest -sv --tb=short --cov-report term-missing --junit-xml=nosetests-ut.xml --cov=. --cov-branch --cov-report=xml:coverage-ut.xml data_lib/tests/
+
+3. C++ 静态代码扫描工具 cppcheck
+  安装cppcheck 工具，做cpp 静态代码检查
+  sudo dnf install cppcheck
+  
+  CMake项目使用方法
+  cmake ../  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 生成一个compile_commands.json 文件
+  cppcheck --project=compile_commands.json
+  输出静态代码检查诊断结果
+
+
+  单独使用方法
+  cppcheck ../*.cpp
+
+
+  一些选项
+  启用警告消息： cppcheck --enable=warning file.c
+  启用性能消息： cppcheck --enable=performance file.c
+  启用信息消息： cppcheck --enable=information file.c
+  启用警告和性能消息： cppcheck --enable=warning,performance file.c
+  启用 unusedFunction 检查: cppcheck --enable=unusedFunction file.c
+  启用全部消息：cppcheck --enable=all
+  
+  多线程检查: 选项 -j 用于指定须要使用的线程数，例如，使用 4 个线程检查文件夹中的文件：
+    cppcheck -j 4 path  注意：这将禁用 unusedFunction 检查。
+
+
+4. C++动态代码检查工具
+  https://blog.csdn.net/u014779536/article/details/122601238
+    sanitizer -> 错误的内存访问 [数组越界]
+    valgrind -> [内存泄漏]
+    火焰图 -->  [性能问题，那个函数调用最多，它就标红]
+
+# TODO：
+5. 英伟达 TensorRT 
+    GPU AI神经网络编译器
+    TensorRT入门  
+    https://blog.csdn.net/qq_40305597/article/details/121344844
+    TensorRT安装
+    https://blog.csdn.net/zong596568821xp/article/details/86077553 
+    Pytorch 模型 TensorRT部署
+    https://blog.csdn.net/qq_17464457/article/details/121305840?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165821689916781683962972%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165821689916781683962972&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-121305840-null-null.142^v32^new_blog_fixed_pos,185^v2^control&utm_term=Pytorch%20%E6%A8%A1%E5%9E%8BTensorRT%E9%83%A8%E7%BD%B2&spm=1018.2226.3001.4187
+    Tensorflow部署之TensorRT    
+    https://blog.csdn.net/weixin_40804043/article/details/104622227?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165821699716782395320962%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165821699716782395320962&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-104622227-null-null.142^v32^new_blog_fixed_pos,185^v2^control&utm_term=tensorflow%E9%83%A8%E7%BD%B2%E4%B9%8BTensorRT&spm=1018.2226.3001.4187
+    使用tensorrt加速tensorflow的预测/前向传播速度
+    https://blog.csdn.net/u010397980/article/details/86382849?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165821706716781818752535%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=165821706716781818752535&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-86382849-null-null.142^v32^new_blog_fixed_pos,185^v2^control&utm_term=%E4%BD%BF%E7%94%A8TensorRT%E5%8A%A0%E9%80%9FTensorflow%E7%9A%84%E9%A2%84%E6%B5%8B%2F&spm=1018.2226.3001.4187
+    TensorRT使用（Tensorflow/Keras/Pytorch）
+    https://blog.csdn.net/favorxin/article/details/117229810?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165821706716781818752535%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=165821706716781818752535&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-117229810-null-null.142^v32^new_blog_fixed_pos,185^v2^control&utm_term=%E4%BD%BF%E7%94%A8TensorRT%E5%8A%A0%E9%80%9FTensorflow%E7%9A%84%E9%A2%84%E6%B5%8B%2F&spm=1018.2226.3001.4187
+
+
+TODO：
+6. PyTorch动态神经网络搭建
+   Tensorflow动态神经网络搭建
+

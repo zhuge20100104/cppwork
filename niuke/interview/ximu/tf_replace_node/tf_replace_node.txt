@@ -1,0 +1,66 @@
+如何删除或者替换tensorflow已训练好的pb模型中的相关节点?
+
+修改tensorflow 已经训练好的模型中的相关节点？
+
+1. 修改已经训练好的模型中的相关节点。
+ 将sigmod 激活函数修改为tanh激活函数。
+
+graph_def = tf.GraphDef()
+with open('frozen_inference.pb', 'rb') as f:
+    graph_def.ParseFromString(f.read())
+
+with tf.Graph().as_default() as graph:
+    importer.import_graph_def(graph_def, name='')
+
+new_model = tf.GraphDef()
+
+with tf.Session(graph=graph) as sess:
+
+    for n in sess.graph_def.node:
+
+        if n.op == 'Sigmoid':
+            nn = new_model.node.add()
+            nn.op = 'Tanh'
+            nn.name = n.name
+            for i in n.input:
+                nn.input.extend([i])
+
+        else:
+            nn = new_model.node.add()
+            nn.CopyFrom(n)
+ with open(output_model_filepath, 'wb') as f:
+        f.write(new_model.SerializeToString()) 
+
+
+2. 删除已经训练好的模型中的相关节点。
+def delete_ops_from_graph():
+    with open(input_model_filepath, 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+
+    # Delete nodes
+    nodes = []
+    for node in graph_def.node:
+        if 'Neg' in node.name:
+            print('Drop', node.name)
+        else:
+            nodes.append(node)
+
+    mod_graph_def = tf.GraphDef()
+    mod_graph_def.node.extend(nodes)
+
+    # Delete references to deleted nodes
+    for node in mod_graph_def.node:
+        inp_names = []
+        for inp in node.input:
+            if 'Neg' in inp:
+                pass
+            else:
+                inp_names.append(inp)
+        # 删除原节点的所有input 输入项，用新的input输入项替代
+        del node.input[:]
+        node.input.extend(inp_names)
+
+    with open(output_model_filepath, 'wb') as f:
+        f.write(mod_graph_def.SerializeToString())
+

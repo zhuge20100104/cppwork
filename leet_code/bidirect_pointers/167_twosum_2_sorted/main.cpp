@@ -1,8 +1,10 @@
 #include "printer/printer.hpp"
 
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -18,14 +20,51 @@ public:
         } 
         return {l+1, r+1};
     }
+
+    vector<int> twoSum2(vector<int>& numbers, int target) {
+        map<int, int> m;
+        for(int i=0; i<numbers.size(); ++i) {
+            m[target-numbers[i]] = i;
+        }
+
+        for(int i=0; i<numbers.size(); ++i) {
+            if(m.find(numbers[i]) != m.end()) {
+                if(i != m[numbers[i]]) {
+                    return {i+1, m[numbers[i]] + 1};
+                }
+            }
+        }
+        return {-1, -1};
+    }
 };
 
 auto main(int argc, char** argv) -> int {
-    Solution s;
-    vector<int> numbers {2,7,11,15};
-    int target {9};
-    auto res = s.twoSum(numbers, target);
-    cout << "Can find that numbers[" << res[0] << "] + numbers[" << res[1] <<"]";
-    cout << "=" << target << " in array " << numbers << "\n";
+    
+    Solution sol;
+
+    string arr_str;
+    while(getline(cin, arr_str)) {
+        stringstream ss{arr_str};
+        string temp;
+        vector<int> numbers;
+        while(getline(ss, temp, ',')) {
+            auto i = stoi(temp);
+            numbers.push_back(i);
+        }
+
+        cout << "Pls input target: ";
+        
+        int target;
+        string target_str;
+        getline(cin, target_str);
+        target = stoi(target_str);
+
+        auto res = sol.twoSum2(numbers, target);
+        cout << "[ ";
+        for(auto const& ele: res) {
+            cout << ele << " ";
+        }
+        cout << " ]\n";
+    }
     return EXIT_SUCCESS;
 }

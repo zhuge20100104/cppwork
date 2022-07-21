@@ -11,6 +11,7 @@ endif(APPLE)
 
 project(bdp_dbr)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_STANDARD 17)
 
 add_definitions(-g)

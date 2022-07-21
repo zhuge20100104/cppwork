@@ -133,8 +133,10 @@ Vector2 Display::transformPoint(const Vector2& point)
 {
     double dx = point.x - mViewXOffset;
     double dy = point.y - mViewYOffset;
+
     double y = mScreenHeight - (dx/mViewHeight)*mScreenHeight;
     double x = (dy/mViewWidth)*mScreenWidth;
+    
     return Vector2(x,y);
 }
 

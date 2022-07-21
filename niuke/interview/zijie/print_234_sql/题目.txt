@@ -1,0 +1,37 @@
+有一张表a：
+a
+3
+2
+4
+
+输出：
+a     b
+2     2
+3     2、3
+3     2、3、3
+4     2、3、3、4
+
+
+use test;
+
+show tables;
+
+create table t(a int);
+
+select * from t;
+
+insert into t values(3), (2),(4);
+
+select * from (select a, 
+	(case a 
+		when 2 then "2" 
+        when 3 then "2,3"
+        when 4 then "2,3,3,4"
+	end) as b    
+from t
+ union 
+	select a, 
+    (case a 
+		when 3 then "2,3,3"
+	  end)
+	 as b from t where a=3) as t1 order by t1.a;

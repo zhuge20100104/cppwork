@@ -1,0 +1,6 @@
+1. 什么是分组卷积?
+https://blog.csdn.net/Aaron_neil/article/details/121097816
+
+InceptionNet 如何做的分组卷积？
+
+https://note.youdao.com/s/BeE7o3Zp

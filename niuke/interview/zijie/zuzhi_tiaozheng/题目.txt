@@ -1,0 +1,51 @@
+祝中良:
+第二题 SQL
+
+祝中良:
+2014年公司组织架构调整，导致部门出现多个绩效，业务及人员不同，无法合并算绩效，源表内容如下：​
+
+a     b  c​
+2014  B  9​
+2015  A  8​
+2014  A  10​
+2015  B  7​
+2014  B  6​
+
+输出结果如下所示：​
+ a    col_A  col_B​
+2014   10    6、9​
+2015   8     7​
+
+表名为table即可
+
+
+use test;
+
+create table tb(
+	a int,
+    b varchar(5),
+    c int
+);
+
+
+select * from tb;
+
+insert into tb(a, b, c) values(2014, "B", 9), 
+	(2015, "A", 8), 
+	(2014, "A", 10), 
+    (2015, "B", 7), 
+    (2014, "B", 6);
+
+select * from tb;
+
+
+select a,
+  max(case when b='A' then c end) as col_A,
+  max(case when b='B' then c end) as col_B 
+from   
+ (select 
+        a,
+        b,
+        group_concat(c) as c
+    from tb
+    group by a,b) as tmp group by a;

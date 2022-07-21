@@ -63,7 +63,7 @@ file( GLOB APP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp ${CMAKE_CURRENT_SOURCE_
 list(REMOVE_ITEM APP_SOURCES ${main_file_list})
 
 foreach( main_file ${main_file_list} )
-    file(RELATIVE_PATH filename ${CMAKE_CURRENT_SOURCE_DIR} ${main_file})
+    file(RELATIVE_PATH filename ${CMAKE_CURRENT_SOURCE_DIR}/src ${main_file})
     string(REPLACE ".cpp" "" file ${filename})
     add_executable(${file} ${APP_SOURCES} ${main_file})
     target_link_libraries(${file} ${Boost_LIBRARIES} ZLIB::ZLIB crossguid pystring)
