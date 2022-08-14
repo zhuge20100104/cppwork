@@ -1,0 +1,362 @@
+1. What is the output of the following code?
+0
+
+2. How many times does this loop execute? 
+Infinite. Cuz i can't reach 300.
+
+3. What are the differences between Heap and Stack memory (2 points)
+ Stack memory is much more less than Heap ones.
+ Typically there's only 4MB stack memory to be used for old PCs.
+ And stack memory is growing downwards.
+ 
+ When we constuct an object or primative type using it's constuctor without new or malloc, 
+ the object is constructed on the stack memory.
+
+ When we try to allocate them using new operator or malloc function, they are located on the 
+ heap memory.
+
+ Heap memory should be managed by the developers.
+ And stack memory is freed automatically by the c plus plus runtime.
+
+
+4. What’s the most difference between semaphore and mutex? (2 points)
+ Mutex can own a 0/1 value only. But semaphore can own values other than 0 and 1.
+
+ Mutex can be used to mutex only 1 resource from other threads.
+ But semaphore can be used to mutex more than 1 resources from other threads.
+
+
+ Mutex can be acquired and released by only 1 thread. 
+ But semaphore can be released by 1 thread, and acquired by another thread.
+
+5. Explain what the 'thread safe' means (2 points)
+
+  Thread safe means when a thread try to access one resource, especially when it's writing
+  some common resources between threads, other threads can't access the same resources until
+  the resources are released by the current thread.
+
+  There are several ways to acheive thread safe, or to protect the common resources in cplusplus.
+  a) using std::atomic 
+  b) using std::mutex and std::lock_guard.
+
+
+6. What are the differences between references and pointers? (5 points)
+    a) Pointer is a variable, it points to a variable's address. Reference is a alias name of a variable.
+    b) Pointer can be empty. But you must initialize a reference when it is defined.
+    c) Pointer can point to other variables after it is initialized, but reference can't.
+    d) You can have pointers to pointers, something line int ** a, but you can't have reference to reference.
+    e) Sizeof operator can get the rawpointer size, typically it is 4/8 bytes on different machines. But when
+      we use sizeof on a reference, we get the actually size of the referenced variable.
+
+    f) Reference can't reference to a null value. But we can have null pointers.
+
+
+7. Please write out the program output. (5 points)
+
+    Segment fault.
+
+8. Given three variables, a, b and c, swap them without temporary variable. (5 points)
+
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main(int argc, char* argv[]) {
+    int x = 30, y = 10, z = 20;
+    x += y;
+    y = x - y;
+    x = x - y;
+
+    x += z;
+    z = x - z;
+    x = x - z;
+
+    y += z;
+    z = y - z;
+    y = y - z;
+
+    cout << x << "," << y << "," << z << endl;
+
+    return EXIT_SUCCESS;
+}
+
+9. Implement the Singleton Template (5 points)
+
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+template<typename T>
+class Singleton{
+public:
+	template <typename... Args>
+	static T* Instance(Args&&... args){
+		if (m_pInstance == nullptr)
+			m_pInstance = new T(std::forward<Args>(args)...);
+		return m_pInstance;
+	}
+
+	static T* GetInstance(){
+		if (m_pInstance == nullptr)
+			throw std::logic_error("the instance is not init,please initialize the instance first");
+		return m_pInstance;
+	}
+
+	static void DestroyInstance()
+	{
+		delete m_pInstance;
+		m_pInstance = nullptr;
+	}
+
+private:
+	Singleton(void);
+	virtual ~Singleton(void);
+	Singleton(const Singleton&);
+	Singleton& operator=(const Singleton&);
+private:
+	static T* m_pInstance;
+};
+
+template<class T>
+T* Singleton<T>::m_pInstance = nullptr;
+
+
+struct A{
+    A(int val_): val{val_} {}
+    
+    int get_val() {
+        return val;
+    }
+private:
+    int val;
+};
+
+int main(int argc, char* argv[]) {
+    auto a = Singleton<A>::Instance(10);
+    cout << a->get_val() << endl;
+
+    auto b = Singleton<A>::GetInstance();
+    cout << b->get_val() << endl;
+    
+    Singleton<A>::DestroyInstance();
+    return EXIT_SUCCESS;
+}
+
+10. There are multiple issues/bugs with the following code. Name as many as you can! (10
+points)
+
+  a) There's no <vector.h> header file in cpp standard library. Should include <vector>
+  b) argv[0] is a char* string, can't be assigned to an int variable.
+  c) stuff is an array, should use delete[] stuff.
+  d) Should use atoi(argv[1]), argv[0] is a string of the executable file name.
+
+
+11. Implement a template boolean IsSameClass() that takes class A and B as template
+parameters. It should compare class A and B and return false when they are different
+classes and true if they are the same class(10 points)
+
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <vector>
+
+using namespace std;
+template<typename, typename>
+    struct is_same_class
+    : public false_type { };
+
+
+template<typename _Tp>
+struct is_same_class<_Tp, _Tp>: public true_type { };
+
+struct A {};
+
+
+int main(int argc, char* argv[]) {
+	cout << std::boolalpha << is_same_class<A, A>::value << endl; 
+    return EXIT_SUCCESS;
+}
+
+12. Implement class String default constructor. (15 points)
+
+class String {
+public:
+    String(const char* str=nullptr) {
+        if(!str) {
+            m_data = nullptr;
+            return;
+        }
+
+        int len{1};
+        while(str[len] != '\0' ) {
+            ++len;
+        }
+        memcpy(m_data, str, len);
+    }
+
+    char* get_data() {
+        return m_data;
+    } 
+private:
+    char* m_data;
+};
+int main(int argc, char* argv[]) {
+	
+    return EXIT_SUCCESS;
+}
+
+13. Write a C++ program to reverse a linked List. (15 points)
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <stack>
+
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode *next;
+};
+
+
+class Solution {
+public:
+
+    ListNode* ReverseList2(ListNode* pHead) {
+        if(!pHead) {
+            return pHead;
+        }
+
+        ListNode* tempHead{pHead};
+        stack<ListNode*> st;
+        while(tempHead) {
+            st.push(tempHead);
+            tempHead = tempHead->next;
+        }
+
+        ListNode* ret{st.top()};
+        ListNode* ret_head {ret};
+        st.pop();
+        while(!st.empty()) {
+            ListNode* temp{st.top()};
+            st.pop();
+            ret->next = temp;
+            ret = ret->next; 
+        }
+        // 最后一个要补空
+        ret->next = nullptr;
+        return ret_head;
+    }
+
+    ListNode* ReverseList(ListNode* pHead) {
+
+        // 1 -> 2 -> 3 -> 4 -> 5 -> nullptr
+        // nullptr <- 1 <- 2  <-  3  <-  4  <-  5
+        /**
+         *  pre       cur
+         *                 cur_next
+        */
+        ListNode* pre {nullptr};
+        ListNode* cur {pHead};
+        while(cur) {
+            // 缓存cur_next，免得待会找不到
+            auto cur_next = cur->next;
+            // 反向连接
+            cur->next = pre;
+            // pre往后移一步 
+            pre = cur;
+            // 最后一步肯定要移动指针
+            cur = cur_next;
+        }
+
+        return pre;
+    }
+};
+
+// 题目: https://www.nowcoder.com/practice/c087914fae584da886a0091e877f2c79?tpId=295&tqId=664&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj
+int main(int argc, char* argv[]) {
+    ListNode l5 = {5, nullptr};
+    ListNode l4 = {4, &l5};
+    ListNode l3 = {3, &l4};
+    ListNode l2 = {2, &l3};
+    ListNode l1 = {1, &l2};
+
+    Solution sol;
+    auto res = sol.ReverseList2(&l1);
+    auto p = res;
+    while(p != nullptr) {
+        cout << p->val << " ";
+        p = p->next;
+    }
+
+    cout << endl;
+
+    return EXIT_SUCCESS;
+}
+
+
+14. Given a binary tree, find the maximum path sum. (20 points)
+The path may start and end at any node in the tree. For example: Given the below
+binary tree,
+
+
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <vector>
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int val_): val{val_} {}
+};
+
+
+using namespace std;
+
+class Solution { 
+    int max_= -9999;
+public: 
+    int maxPathSum(TreeNode* root) {
+        maxPathDown(root);
+        return max_;
+    }
+    int maxPathDown(TreeNode* root){//从下而下的路径的最大路径和
+        if(!root){
+            return 0;
+        }
+        int left= max(0,maxPathDown(root->left));//如果小于0则不加入路径
+        int right= max(0,maxPathDown(root->right));
+        max_= max(max_,left+right+root->val);
+        return max(left,right)+root->val;
+    }
+};
+
+
+int main(int argc, char* argv[]) {
+   
+    return EXIT_SUCCESS;
+}

@@ -1,0 +1,8 @@
+prefix=/home/fredric/code/cppwork/catkin_ws/devel
+
+Name: study_param_listen
+Description: Description of study_param_listen
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs study_msgs

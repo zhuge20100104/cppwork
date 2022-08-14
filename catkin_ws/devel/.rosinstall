@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/fredric/code/cppwork/catkin_ws/devel/setup.sh
