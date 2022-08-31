@@ -4,3 +4,4 @@
 **/build/*
 **/*.log
 apollo/.cache/*
+**/*.INFO
