@@ -1,0 +1,52 @@
+Log file created at: 2022/08/31 12:19:08
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0831 12:19:08.104476 135134 global_data.cc:153] host ip: 192.168.2.105
+W0831 12:19:08.105556 135134 scheduler_factory.cc:63] No sched conf found, use default conf.
+I0831 12:19:08.108683 135136 processor.cc:42] processor_tid: 135136
+I0831 12:19:08.108865 135137 processor.cc:42] processor_tid: 135137
+I0831 12:19:08.112700 135138 processor.cc:42] processor_tid: 135138
+I0831 12:19:08.112843 135139 processor.cc:42] processor_tid: 135139
+I0831 12:19:08.112931 135140 processor.cc:42] processor_tid: 135140
+I0831 12:19:08.114225 135141 processor.cc:42] processor_tid: 135141
+I0831 12:19:08.114352 135142 processor.cc:42] processor_tid: 135142
+I0831 12:19:08.114431 135143 processor.cc:42] processor_tid: 135143
+I0831 12:19:08.114722 135144 processor.cc:42] processor_tid: 135144
+I0831 12:19:08.114805 135145 processor.cc:42] processor_tid: 135145
+I0831 12:19:08.114886 135146 processor.cc:42] processor_tid: 135146
+I0831 12:19:08.115012 135147 processor.cc:42] processor_tid: 135147
+I0831 12:19:08.115094 135148 processor.cc:42] processor_tid: 135148
+I0831 12:19:08.115309 135149 processor.cc:42] processor_tid: 135149
+I0831 12:19:08.115406 135150 processor.cc:42] processor_tid: 135150
+I0831 12:19:08.115480 135151 processor.cc:42] processor_tid: 135151
+I0831 12:19:08.115497 135134 init.cc:113] Register exit handle succ.
+I0831 12:19:08.125691 135134 demo01_talker.cc:17] 发布第1条数据！
+I0831 12:19:10.125793 135134 demo01_talker.cc:17] 发布第2条数据！
+I0831 12:19:12.125783 135134 demo01_talker.cc:17] 发布第3条数据！
+I0831 12:19:14.125802 135134 demo01_talker.cc:17] 发布第4条数据！
+I0831 12:19:16.125764 135134 demo01_talker.cc:17] 发布第5条数据！
+I0831 12:19:18.125784 135134 demo01_talker.cc:17] 发布第6条数据！
+I0831 12:19:20.125792 135134 demo01_talker.cc:17] 发布第7条数据！
+I0831 12:19:22.125756 135134 demo01_talker.cc:17] 发布第8条数据！
+I0831 12:19:24.125763 135134 demo01_talker.cc:17] 发布第9条数据！
+I0831 12:19:26.125771 135134 demo01_talker.cc:17] 发布第10条数据！
+I0831 12:19:28.125769 135134 demo01_talker.cc:17] 发布第11条数据！
+I0831 12:19:30.125758 135134 demo01_talker.cc:17] 发布第12条数据！
+I0831 12:19:32.125756 135134 demo01_talker.cc:17] 发布第13条数据！
+I0831 12:19:34.125757 135134 demo01_talker.cc:17] 发布第14条数据！
+I0831 12:19:36.125728 135134 demo01_talker.cc:17] 发布第15条数据！
+I0831 12:19:38.125756 135134 demo01_talker.cc:17] 发布第16条数据！
+I0831 12:19:40.125783 135134 demo01_talker.cc:17] 发布第17条数据！
+I0831 12:19:42.125761 135134 demo01_talker.cc:17] 发布第18条数据！
+I0831 12:19:44.125792 135134 demo01_talker.cc:17] 发布第19条数据！
+I0831 12:19:46.125767 135134 demo01_talker.cc:17] 发布第20条数据！
+I0831 12:19:48.125759 135134 demo01_talker.cc:17] 发布第21条数据！
+I0831 12:19:50.125761 135134 demo01_talker.cc:17] 发布第22条数据！
+I0831 12:19:52.125758 135134 demo01_talker.cc:17] 发布第23条数据！
+I0831 12:19:54.125771 135134 demo01_talker.cc:17] 发布第24条数据！
+I0831 12:19:56.125754 135134 demo01_talker.cc:17] 发布第25条数据！
+I0831 12:19:58.125761 135134 demo01_talker.cc:17] 发布第26条数据！
+I0831 12:20:00.125761 135134 demo01_talker.cc:17] 发布第27条数据！
+I0831 12:20:02.125764 135134 demo01_talker.cc:17] 发布第28条数据！
+I0831 12:20:04.125756 135134 demo01_talker.cc:17] 发布第29条数据！
+I0831 12:20:06.125792 135134 demo01_talker.cc:17] 发布第30条数据！

@@ -3,3 +3,4 @@
 **/*.png
 **/build/*
 **/*.log
+apollo/.cache/*

@@ -1,0 +1,8 @@
+prefix=/home/fredric/code/cppwork/catkin_ws/devel
+
+Name: hello_pub_sub
+Description: Description of hello_pub_sub
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs

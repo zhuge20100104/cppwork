@@ -1,0 +1,136 @@
+Log file created at: 2022/08/31 12:19:23
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0831 12:19:23.996340 135541 global_data.cc:153] host ip: 192.168.2.105
+W0831 12:19:23.997248 135541 scheduler_factory.cc:63] No sched conf found, use default conf.
+I0831 12:19:23.997427 135543 processor.cc:42] processor_tid: 135543
+I0831 12:19:23.997634 135544 processor.cc:42] processor_tid: 135544
+I0831 12:19:23.997735 135545 processor.cc:42] processor_tid: 135545
+I0831 12:19:23.997869 135546 processor.cc:42] processor_tid: 135546
+I0831 12:19:23.997974 135547 processor.cc:42] processor_tid: 135547
+I0831 12:19:23.998055 135548 processor.cc:42] processor_tid: 135548
+I0831 12:19:23.998175 135549 processor.cc:42] processor_tid: 135549
+I0831 12:19:23.998250 135550 processor.cc:42] processor_tid: 135550
+I0831 12:19:23.999769 135551 processor.cc:42] processor_tid: 135551
+I0831 12:19:23.999861 135552 processor.cc:42] processor_tid: 135552
+I0831 12:19:23.999938 135553 processor.cc:42] processor_tid: 135553
+I0831 12:19:24.000017 135554 processor.cc:42] processor_tid: 135554
+I0831 12:19:24.000106 135555 processor.cc:42] processor_tid: 135555
+I0831 12:19:24.000193 135556 processor.cc:42] processor_tid: 135556
+I0831 12:19:24.000278 135557 processor.cc:42] processor_tid: 135557
+I0831 12:19:24.000363 135558 processor.cc:42] processor_tid: 135558
+I0831 12:19:24.000393 135541 init.cc:113] Register exit handle succ.
+I0831 12:19:24.000571 135541 demo02_listener.cc:16] 订阅方创建...
+I0831 12:19:24.011830 135541 scheduler.cc:55] create croutine: listener_chatter
+I0831 12:19:26.126549 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:26.126583 135544 demo02_listener.cc:6] age: 10
+I0831 12:19:26.126602 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:26.126636 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:26.126647 135544 demo02_listener.cc:9] books: math
+I0831 12:19:26.126655 135544 demo02_listener.cc:9] books: english
+I0831 12:19:26.126662 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:28.126056 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:28.126101 135544 demo02_listener.cc:6] age: 11
+I0831 12:19:28.126114 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:28.126145 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:28.126158 135544 demo02_listener.cc:9] books: math
+I0831 12:19:28.126168 135544 demo02_listener.cc:9] books: english
+I0831 12:19:28.126173 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:30.126015 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:30.126049 135544 demo02_listener.cc:6] age: 12
+I0831 12:19:30.126060 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:30.126078 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:30.126091 135544 demo02_listener.cc:9] books: math
+I0831 12:19:30.126101 135544 demo02_listener.cc:9] books: english
+I0831 12:19:30.126111 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:32.126020 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:32.126055 135544 demo02_listener.cc:6] age: 13
+I0831 12:19:32.126068 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:32.126089 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:32.126101 135544 demo02_listener.cc:9] books: math
+I0831 12:19:32.126112 135544 demo02_listener.cc:9] books: english
+I0831 12:19:32.126121 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:34.126013 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:34.126037 135544 demo02_listener.cc:6] age: 14
+I0831 12:19:34.126045 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:34.126060 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:34.126065 135544 demo02_listener.cc:9] books: math
+I0831 12:19:34.126071 135544 demo02_listener.cc:9] books: english
+I0831 12:19:34.126086 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:36.125960 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:36.125994 135544 demo02_listener.cc:6] age: 15
+I0831 12:19:36.126004 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:36.126024 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:36.126032 135544 demo02_listener.cc:9] books: math
+I0831 12:19:36.126041 135544 demo02_listener.cc:9] books: english
+I0831 12:19:36.126049 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:38.126026 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:38.126049 135544 demo02_listener.cc:6] age: 16
+I0831 12:19:38.126057 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:38.126072 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:38.126078 135544 demo02_listener.cc:9] books: math
+I0831 12:19:38.126085 135544 demo02_listener.cc:9] books: english
+I0831 12:19:38.126091 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:40.132834 135547 demo02_listener.cc:5] name: 张三
+I0831 12:19:40.132876 135547 demo02_listener.cc:6] age: 17
+I0831 12:19:40.132889 135547 demo02_listener.cc:7] height: 1.72
+I0831 12:19:40.132906 135547 demo02_listener.cc:9] books: chinese
+I0831 12:19:40.132915 135547 demo02_listener.cc:9] books: math
+I0831 12:19:40.132923 135547 demo02_listener.cc:9] books: english
+I0831 12:19:40.132936 135547 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:42.126056 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:42.126111 135544 demo02_listener.cc:6] age: 18
+I0831 12:19:42.126125 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:42.126148 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:42.126163 135544 demo02_listener.cc:9] books: math
+I0831 12:19:42.126175 135544 demo02_listener.cc:9] books: english
+I0831 12:19:42.126185 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:44.126076 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:44.126109 135544 demo02_listener.cc:6] age: 19
+I0831 12:19:44.126122 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:44.126153 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:44.126164 135544 demo02_listener.cc:9] books: math
+I0831 12:19:44.126174 135544 demo02_listener.cc:9] books: english
+I0831 12:19:44.126183 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:46.125999 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:46.126032 135544 demo02_listener.cc:6] age: 20
+I0831 12:19:46.126039 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:46.126057 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:46.126068 135544 demo02_listener.cc:9] books: math
+I0831 12:19:46.126078 135544 demo02_listener.cc:9] books: english
+I0831 12:19:46.126088 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:48.125993 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:48.126020 135544 demo02_listener.cc:6] age: 21
+I0831 12:19:48.126032 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:48.126049 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:48.126060 135544 demo02_listener.cc:9] books: math
+I0831 12:19:48.126068 135544 demo02_listener.cc:9] books: english
+I0831 12:19:48.126077 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:50.126029 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:50.126071 135544 demo02_listener.cc:6] age: 22
+I0831 12:19:50.126085 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:50.126104 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:50.126114 135544 demo02_listener.cc:9] books: math
+I0831 12:19:50.126123 135544 demo02_listener.cc:9] books: english
+I0831 12:19:50.126135 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:52.126114 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:52.126143 135544 demo02_listener.cc:6] age: 23
+I0831 12:19:52.126154 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:52.126174 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:52.126184 135544 demo02_listener.cc:9] books: math
+I0831 12:19:52.126194 135544 demo02_listener.cc:9] books: english
+I0831 12:19:52.126209 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:54.126082 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:54.126113 135544 demo02_listener.cc:6] age: 24
+I0831 12:19:54.126123 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:54.126137 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:54.126144 135544 demo02_listener.cc:9] books: math
+I0831 12:19:54.126152 135544 demo02_listener.cc:9] books: english
+I0831 12:19:54.126157 135544 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:19:56.126047 135544 demo02_listener.cc:5] name: 张三
+I0831 12:19:56.126082 135544 demo02_listener.cc:6] age: 25
+I0831 12:19:56.126098 135544 demo02_listener.cc:7] height: 1.72
+I0831 12:19:56.126129 135544 demo02_listener.cc:9] books: chinese
+I0831 12:19:56.126142 135544 demo02_listener.cc:9] books: math
+I0831 12:19:56.126152 135544 demo02_listener.cc:9] books: english
+I0831 12:19:56.126163 135544 demo02_listener.cc:11] -------------------------------------------------

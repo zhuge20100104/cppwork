@@ -1,0 +1,73 @@
+Log file created at: 2022/08/30 12:44:52
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0830 12:44:52.367084 79893 global_data.cc:153] host ip: 192.168.2.105
+W0830 12:44:52.367983 79893 scheduler_factory.cc:63] No sched conf found, use default conf.
+I0830 12:44:52.368152 79895 processor.cc:42] processor_tid: 79895
+I0830 12:44:52.368250 79896 processor.cc:42] processor_tid: 79896
+I0830 12:44:52.368335 79897 processor.cc:42] processor_tid: 79897
+I0830 12:44:52.368427 79898 processor.cc:42] processor_tid: 79898
+I0830 12:44:52.368500 79899 processor.cc:42] processor_tid: 79899
+I0830 12:44:52.368572 79900 processor.cc:42] processor_tid: 79900
+I0830 12:44:52.368665 79901 processor.cc:42] processor_tid: 79901
+I0830 12:44:52.368739 79902 processor.cc:42] processor_tid: 79902
+I0830 12:44:52.368820 79903 processor.cc:42] processor_tid: 79903
+I0830 12:44:52.368891 79904 processor.cc:42] processor_tid: 79904
+I0830 12:44:52.368963 79905 processor.cc:42] processor_tid: 79905
+I0830 12:44:52.369031 79906 processor.cc:42] processor_tid: 79906
+I0830 12:44:52.369112 79907 processor.cc:42] processor_tid: 79907
+I0830 12:44:52.369216 79908 processor.cc:42] processor_tid: 79908
+I0830 12:44:52.369304 79909 processor.cc:42] processor_tid: 79909
+I0830 12:44:52.369376 79910 processor.cc:42] processor_tid: 79910
+I0830 12:44:52.369393 79893 init.cc:113] Register exit handle succ.
+I0830 12:44:52.385527 79893 scheduler.cc:55] create croutine: listener_channel/chatter
+I0830 12:44:53.589573 79896 listener.cc:23] Received message seq-> 23
+I0830 12:44:53.589601 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:44:54.589159 79896 listener.cc:23] Received message seq-> 24
+I0830 12:44:54.589197 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:44:55.589144 79896 listener.cc:23] Received message seq-> 25
+I0830 12:44:55.589179 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:44:56.589109 79896 listener.cc:23] Received message seq-> 26
+I0830 12:44:56.589136 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:44:57.589102 79896 listener.cc:23] Received message seq-> 27
+I0830 12:44:57.589128 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:44:58.589128 79896 listener.cc:23] Received message seq-> 28
+I0830 12:44:58.589154 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:44:59.589164 79896 listener.cc:23] Received message seq-> 29
+I0830 12:44:59.589195 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:00.589143 79896 listener.cc:23] Received message seq-> 30
+I0830 12:45:00.589174 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:01.589108 79896 listener.cc:23] Received message seq-> 31
+I0830 12:45:01.589133 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:02.589135 79896 listener.cc:23] Received message seq-> 32
+I0830 12:45:02.589170 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:03.589080 79896 listener.cc:23] Received message seq-> 33
+I0830 12:45:03.589123 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:04.589157 79896 listener.cc:23] Received message seq-> 34
+I0830 12:45:04.589195 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:05.589068 79896 listener.cc:23] Received message seq-> 35
+I0830 12:45:05.589128 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:06.589179 79896 listener.cc:23] Received message seq-> 36
+I0830 12:45:06.589215 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:07.589112 79896 listener.cc:23] Received message seq-> 37
+I0830 12:45:07.589152 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:08.589112 79896 listener.cc:23] Received message seq-> 38
+I0830 12:45:08.589138 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:09.589121 79896 listener.cc:23] Received message seq-> 39
+I0830 12:45:09.589152 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:10.589085 79896 listener.cc:23] Received message seq-> 40
+I0830 12:45:10.589128 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:11.589139 79896 listener.cc:23] Received message seq-> 41
+I0830 12:45:11.589171 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:12.589108 79896 listener.cc:23] Received message seq-> 42
+I0830 12:45:12.589138 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:13.589184 79896 listener.cc:23] Received message seq-> 43
+I0830 12:45:13.589224 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:14.589123 79896 listener.cc:23] Received message seq-> 44
+I0830 12:45:14.589159 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:15.589105 79896 listener.cc:23] Received message seq-> 45
+I0830 12:45:15.589129 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:16.589134 79896 listener.cc:23] Received message seq-> 46
+I0830 12:45:16.589169 79896 listener.cc:24] msgcontent->Hello, apollo!
+I0830 12:45:17.589118 79896 listener.cc:23] Received message seq-> 47
+I0830 12:45:17.589146 79896 listener.cc:24] msgcontent->Hello, apollo!

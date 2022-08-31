@@ -1,0 +1,25 @@
+Log file created at: 2022/08/31 15:57:30
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0831 15:57:30.188479 300696 global_data.cc:153] host ip: 192.168.2.105
+W0831 15:57:30.189354 300696 scheduler_factory.cc:63] No sched conf found, use default conf.
+I0831 15:57:30.189548 300698 processor.cc:42] processor_tid: 300698
+I0831 15:57:30.190016 300699 processor.cc:42] processor_tid: 300699
+I0831 15:57:30.190111 300700 processor.cc:42] processor_tid: 300700
+I0831 15:57:30.190308 300701 processor.cc:42] processor_tid: 300701
+I0831 15:57:30.190569 300702 processor.cc:42] processor_tid: 300702
+I0831 15:57:30.190796 300703 processor.cc:42] processor_tid: 300703
+I0831 15:57:30.190896 300704 processor.cc:42] processor_tid: 300704
+I0831 15:57:30.190980 300705 processor.cc:42] processor_tid: 300705
+I0831 15:57:30.191112 300707 processor.cc:42] processor_tid: 300707
+I0831 15:57:30.191188 300708 processor.cc:42] processor_tid: 300708
+I0831 15:57:30.191037 300706 processor.cc:42] processor_tid: 300706
+I0831 15:57:30.191361 300709 processor.cc:42] processor_tid: 300709
+I0831 15:57:30.191435 300710 processor.cc:42] processor_tid: 300710
+I0831 15:57:30.191617 300711 processor.cc:42] processor_tid: 300711
+I0831 15:57:30.191697 300712 processor.cc:42] processor_tid: 300712
+I0831 15:57:30.191776 300713 processor.cc:42] processor_tid: 300713
+I0831 15:57:30.191793 300696 init.cc:113] Register exit handle succ.
+I0831 15:57:30.191844 300696 demo04_client.cc:15] 客户端启动...
+I0831 15:57:30.204834 300696 demo04_client.cc:18] 等待服务启动...
+I0831 15:57:30.417924 300696 demo04_client.cc:23] 响应结果: sum=301

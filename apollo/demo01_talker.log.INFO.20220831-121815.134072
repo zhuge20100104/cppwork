@@ -1,0 +1,39 @@
+Log file created at: 2022/08/31 12:18:15
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0831 12:18:15.515527 134072 global_data.cc:153] host ip: 192.168.2.105
+W0831 12:18:15.515579 134072 environment.h:33] Environment variable [CYBER_PATH] not set, fallback to 
+W0831 12:18:15.516777 134072 environment.h:33] Environment variable [CYBER_PATH] not set, fallback to 
+W0831 12:18:15.516806 134072 scheduler_factory.cc:63] No sched conf found, use default conf.
+W0831 12:18:15.516832 134072 environment.h:33] Environment variable [CYBER_PATH] not set, fallback to 
+I0831 12:18:15.516985 134074 processor.cc:42] processor_tid: 134074
+I0831 12:18:15.520684 134075 processor.cc:42] processor_tid: 134075
+I0831 12:18:15.520838 134076 processor.cc:42] processor_tid: 134076
+I0831 12:18:15.521534 134077 processor.cc:42] processor_tid: 134077
+I0831 12:18:15.521605 134078 processor.cc:42] processor_tid: 134078
+I0831 12:18:15.521673 134079 processor.cc:42] processor_tid: 134079
+I0831 12:18:15.522245 134080 processor.cc:42] processor_tid: 134080
+I0831 12:18:15.522321 134081 processor.cc:42] processor_tid: 134081
+I0831 12:18:15.522377 134082 processor.cc:42] processor_tid: 134082
+I0831 12:18:15.522455 134083 processor.cc:42] processor_tid: 134083
+I0831 12:18:15.522531 134084 processor.cc:42] processor_tid: 134084
+I0831 12:18:15.522601 134085 processor.cc:42] processor_tid: 134085
+I0831 12:18:15.523509 134086 processor.cc:42] processor_tid: 134086
+I0831 12:18:15.523844 134087 processor.cc:42] processor_tid: 134087
+I0831 12:18:15.523947 134088 processor.cc:42] processor_tid: 134088
+I0831 12:18:15.524030 134089 processor.cc:42] processor_tid: 134089
+W0831 12:18:15.524044 134072 environment.h:33] Environment variable [sysmo_start] not set, fallback to 
+I0831 12:18:15.524082 134072 init.cc:113] Register exit handle succ.
+I0831 12:18:15.538331 134072 demo01_talker.cc:17] 发布第1条数据！
+I0831 12:18:17.538404 134072 demo01_talker.cc:17] 发布第2条数据！
+I0831 12:18:19.538444 134072 demo01_talker.cc:17] 发布第3条数据！
+I0831 12:18:21.538399 134072 demo01_talker.cc:17] 发布第4条数据！
+I0831 12:18:23.538439 134072 demo01_talker.cc:17] 发布第5条数据！
+I0831 12:18:25.538441 134072 demo01_talker.cc:17] 发布第6条数据！
+I0831 12:18:27.538394 134072 demo01_talker.cc:17] 发布第7条数据！
+I0831 12:18:29.538398 134072 demo01_talker.cc:17] 发布第8条数据！
+I0831 12:18:31.538403 134072 demo01_talker.cc:17] 发布第9条数据！
+I0831 12:18:33.538403 134072 demo01_talker.cc:17] 发布第10条数据！
+I0831 12:18:35.538404 134072 demo01_talker.cc:17] 发布第11条数据！
+I0831 12:18:37.538414 134072 demo01_talker.cc:17] 发布第12条数据！
+I0831 12:18:39.538398 134072 demo01_talker.cc:17] 发布第13条数据！

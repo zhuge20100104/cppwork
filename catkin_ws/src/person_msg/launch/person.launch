@@ -1,0 +1,6 @@
+<launch>
+    <!-- 添加被执行的节点 -->
+    <!-- 自己写的日志程序 output=screen 控制日志输出到屏幕 -->
+    <node pkg="person_msg" type="person_msg_pub" name="person_msg_pub" output="screen" />
+    <node pkg="person_msg" type="person_msg_sub" name="person_msg_sub" output="screen" />
+</launch>

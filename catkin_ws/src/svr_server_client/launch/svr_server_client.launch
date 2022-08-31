@@ -1,0 +1,6 @@
+<launch>
+    <!-- 添加被执行的节点 -->
+    <!-- 自己写的日志程序 output=screen 控制日志输出到屏幕 -->
+    <node pkg="svr_server_client" type="svr_server" name="svr_server_cli" output="screen" />
+    <node pkg="svr_server_client" type="svr_client" name="svr_client_cli" args="33 44" output="screen" />
+</launch>

@@ -1,0 +1,6 @@
+<launch>
+    <!-- 添加被执行的节点 -->
+    <!-- 自己写的日志程序 output=screen 控制日志输出到屏幕 -->
+    <node pkg="hello_pub_sub" type="hello_pub_node" name="hello_pub_console" output="screen" />
+    <node pkg="hello_pub_sub" type="hello_sub_node" name="hello_sub_console" output="screen" />
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/fredric/code/cppwork/catkin_ws/devel
+
+Name: hello_vs_code
+Description: Description of hello_vs_code
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp

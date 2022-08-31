@@ -1,0 +1,10 @@
+<launch>
+    <!-- 添加被执行的节点 -->
+    <!-- 自己写的日志程序 output=screen 控制日志输出到屏幕 -->
+    <node pkg="start_turtle" type="start_turtle_node" name="start_turtle_console" output="screen" />
+    <!-- 乌龟GUI -->
+    <!-- pkg 包名 type node名 name 给节点随意起个名 -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle_GUI" />
+    <!-- 键盘控制 -->
+    <node pkg="turtlesim" type="turtle_teleop_key" name="turtle_Keyboard" />
+</launch>

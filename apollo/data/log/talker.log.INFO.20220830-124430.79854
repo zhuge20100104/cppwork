@@ -1,0 +1,70 @@
+Log file created at: 2022/08/30 12:44:30
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0830 12:44:30.564563 79854 global_data.cc:153] host ip: 192.168.2.105
+W0830 12:44:30.566085 79854 scheduler_factory.cc:63] No sched conf found, use default conf.
+I0830 12:44:30.566373 79857 processor.cc:42] processor_tid: 79857
+I0830 12:44:30.566469 79858 processor.cc:42] processor_tid: 79858
+I0830 12:44:30.566561 79859 processor.cc:42] processor_tid: 79859
+I0830 12:44:30.568020 79860 processor.cc:42] processor_tid: 79860
+I0830 12:44:30.568145 79861 processor.cc:42] processor_tid: 79861
+I0830 12:44:30.568215 79862 processor.cc:42] processor_tid: 79862
+I0830 12:44:30.568282 79863 processor.cc:42] processor_tid: 79863
+I0830 12:44:30.568389 79864 processor.cc:42] processor_tid: 79864
+I0830 12:44:30.575371 79865 processor.cc:42] processor_tid: 79865
+I0830 12:44:30.575562 79866 processor.cc:42] processor_tid: 79866
+I0830 12:44:30.575640 79867 processor.cc:42] processor_tid: 79867
+I0830 12:44:30.577175 79868 processor.cc:42] processor_tid: 79868
+I0830 12:44:30.577248 79869 processor.cc:42] processor_tid: 79869
+I0830 12:44:30.577315 79870 processor.cc:42] processor_tid: 79870
+I0830 12:44:30.577430 79871 processor.cc:42] processor_tid: 79871
+I0830 12:44:30.577524 79872 processor.cc:42] processor_tid: 79872
+I0830 12:44:30.577538 79854 init.cc:113] Register exit handle succ.
+I0830 12:44:30.588850 79854 talker.cc:43] talker sent a message! No. 0
+I0830 12:44:31.588924 79854 talker.cc:43] talker sent a message! No. 1
+I0830 12:44:32.588954 79854 talker.cc:43] talker sent a message! No. 2
+I0830 12:44:33.588945 79854 talker.cc:43] talker sent a message! No. 3
+I0830 12:44:34.588958 79854 talker.cc:43] talker sent a message! No. 4
+I0830 12:44:35.588932 79854 talker.cc:43] talker sent a message! No. 5
+I0830 12:44:36.588969 79854 talker.cc:43] talker sent a message! No. 6
+I0830 12:44:37.588961 79854 talker.cc:43] talker sent a message! No. 7
+I0830 12:44:38.588917 79854 talker.cc:43] talker sent a message! No. 8
+I0830 12:44:39.588953 79854 talker.cc:43] talker sent a message! No. 9
+I0830 12:44:40.588972 79854 talker.cc:43] talker sent a message! No. 10
+I0830 12:44:41.588966 79854 talker.cc:43] talker sent a message! No. 11
+I0830 12:44:42.588958 79854 talker.cc:43] talker sent a message! No. 12
+I0830 12:44:43.588976 79854 talker.cc:43] talker sent a message! No. 13
+I0830 12:44:44.588922 79854 talker.cc:43] talker sent a message! No. 14
+I0830 12:44:45.588958 79854 talker.cc:43] talker sent a message! No. 15
+I0830 12:44:46.588956 79854 talker.cc:43] talker sent a message! No. 16
+I0830 12:44:47.588937 79854 talker.cc:43] talker sent a message! No. 17
+I0830 12:44:48.588955 79854 talker.cc:43] talker sent a message! No. 18
+I0830 12:44:49.588913 79854 talker.cc:43] talker sent a message! No. 19
+I0830 12:44:50.588949 79854 talker.cc:43] talker sent a message! No. 20
+I0830 12:44:51.588948 79854 talker.cc:43] talker sent a message! No. 21
+I0830 12:44:52.589381 79854 talker.cc:43] talker sent a message! No. 22
+I0830 12:44:53.588968 79854 talker.cc:43] talker sent a message! No. 23
+I0830 12:44:54.588999 79854 talker.cc:43] talker sent a message! No. 24
+I0830 12:44:55.588945 79854 talker.cc:43] talker sent a message! No. 25
+I0830 12:44:56.588985 79854 talker.cc:43] talker sent a message! No. 26
+I0830 12:44:57.588948 79854 talker.cc:43] talker sent a message! No. 27
+I0830 12:44:58.588948 79854 talker.cc:43] talker sent a message! No. 28
+I0830 12:44:59.588980 79854 talker.cc:43] talker sent a message! No. 29
+I0830 12:45:00.588935 79854 talker.cc:43] talker sent a message! No. 30
+I0830 12:45:01.588965 79854 talker.cc:43] talker sent a message! No. 31
+I0830 12:45:02.588950 79854 talker.cc:43] talker sent a message! No. 32
+I0830 12:45:03.588938 79854 talker.cc:43] talker sent a message! No. 33
+I0830 12:45:04.588984 79854 talker.cc:43] talker sent a message! No. 34
+I0830 12:45:05.588909 79854 talker.cc:43] talker sent a message! No. 35
+I0830 12:45:06.588969 79854 talker.cc:43] talker sent a message! No. 36
+I0830 12:45:07.588956 79854 talker.cc:43] talker sent a message! No. 37
+I0830 12:45:08.588943 79854 talker.cc:43] talker sent a message! No. 38
+I0830 12:45:09.588932 79854 talker.cc:43] talker sent a message! No. 39
+I0830 12:45:10.588974 79854 talker.cc:43] talker sent a message! No. 40
+I0830 12:45:11.588943 79854 talker.cc:43] talker sent a message! No. 41
+I0830 12:45:12.588920 79854 talker.cc:43] talker sent a message! No. 42
+I0830 12:45:13.588971 79854 talker.cc:43] talker sent a message! No. 43
+I0830 12:45:14.588946 79854 talker.cc:43] talker sent a message! No. 44
+I0830 12:45:15.588948 79854 talker.cc:43] talker sent a message! No. 45
+I0830 12:45:16.588980 79854 talker.cc:43] talker sent a message! No. 46
+I0830 12:45:17.588917 79854 talker.cc:43] talker sent a message! No. 47

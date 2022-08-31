@@ -1,0 +1,63 @@
+Log file created at: 2022/08/31 12:18:30
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0831 12:18:30.723582 134392 global_data.cc:153] host ip: 192.168.2.105
+W0831 12:18:30.723628 134392 environment.h:33] Environment variable [CYBER_PATH] not set, fallback to 
+W0831 12:18:30.724467 134392 environment.h:33] Environment variable [CYBER_PATH] not set, fallback to 
+W0831 12:18:30.724500 134392 scheduler_factory.cc:63] No sched conf found, use default conf.
+W0831 12:18:30.724529 134392 environment.h:33] Environment variable [CYBER_PATH] not set, fallback to 
+I0831 12:18:30.724697 134394 processor.cc:42] processor_tid: 134394
+I0831 12:18:30.724788 134395 processor.cc:42] processor_tid: 134395
+I0831 12:18:30.725054 134396 processor.cc:42] processor_tid: 134396
+I0831 12:18:30.728685 134397 processor.cc:42] processor_tid: 134397
+I0831 12:18:30.734722 134398 processor.cc:42] processor_tid: 134398
+I0831 12:18:30.734911 134399 processor.cc:42] processor_tid: 134399
+I0831 12:18:30.736685 134400 processor.cc:42] processor_tid: 134400
+I0831 12:18:30.736775 134401 processor.cc:42] processor_tid: 134401
+I0831 12:18:30.736883 134402 processor.cc:42] processor_tid: 134402
+I0831 12:18:30.736963 134403 processor.cc:42] processor_tid: 134403
+I0831 12:18:30.737051 134404 processor.cc:42] processor_tid: 134404
+I0831 12:18:30.737138 134405 processor.cc:42] processor_tid: 134405
+I0831 12:18:30.756700 134406 processor.cc:42] processor_tid: 134406
+I0831 12:18:30.760679 134407 processor.cc:42] processor_tid: 134407
+I0831 12:18:30.760792 134408 processor.cc:42] processor_tid: 134408
+I0831 12:18:30.764695 134409 processor.cc:42] processor_tid: 134409
+W0831 12:18:30.764708 134392 environment.h:33] Environment variable [sysmo_start] not set, fallback to 
+I0831 12:18:30.764786 134392 init.cc:113] Register exit handle succ.
+I0831 12:18:30.764797 134392 demo02_listener.cc:16] 订阅方创建...
+I0831 12:18:30.774037 134392 scheduler.cc:55] create croutine: listener_chatter
+I0831 12:18:31.539754 134395 demo02_listener.cc:5] name: 张三
+I0831 12:18:31.539770 134395 demo02_listener.cc:6] age: 9
+I0831 12:18:31.539777 134395 demo02_listener.cc:7] height: 1.72
+I0831 12:18:31.539804 134395 demo02_listener.cc:9] books: chinese
+I0831 12:18:31.539808 134395 demo02_listener.cc:9] books: math
+I0831 12:18:31.539811 134395 demo02_listener.cc:9] books: english
+I0831 12:18:31.539814 134395 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:18:33.538651 134395 demo02_listener.cc:5] name: 张三
+I0831 12:18:33.538671 134395 demo02_listener.cc:6] age: 10
+I0831 12:18:33.538677 134395 demo02_listener.cc:7] height: 1.72
+I0831 12:18:33.538692 134395 demo02_listener.cc:9] books: chinese
+I0831 12:18:33.538698 134395 demo02_listener.cc:9] books: math
+I0831 12:18:33.538702 134395 demo02_listener.cc:9] books: english
+I0831 12:18:33.538719 134395 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:18:35.538722 134395 demo02_listener.cc:5] name: 张三
+I0831 12:18:35.538738 134395 demo02_listener.cc:6] age: 11
+I0831 12:18:35.538743 134395 demo02_listener.cc:7] height: 1.72
+I0831 12:18:35.538754 134395 demo02_listener.cc:9] books: chinese
+I0831 12:18:35.538758 134395 demo02_listener.cc:9] books: math
+I0831 12:18:35.538761 134395 demo02_listener.cc:9] books: english
+I0831 12:18:35.538763 134395 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:18:37.538631 134395 demo02_listener.cc:5] name: 张三
+I0831 12:18:37.538648 134395 demo02_listener.cc:6] age: 12
+I0831 12:18:37.538652 134395 demo02_listener.cc:7] height: 1.72
+I0831 12:18:37.538662 134395 demo02_listener.cc:9] books: chinese
+I0831 12:18:37.538666 134395 demo02_listener.cc:9] books: math
+I0831 12:18:37.538671 134395 demo02_listener.cc:9] books: english
+I0831 12:18:37.538673 134395 demo02_listener.cc:11] -------------------------------------------------
+I0831 12:18:39.538650 134395 demo02_listener.cc:5] name: 张三
+I0831 12:18:39.538666 134395 demo02_listener.cc:6] age: 13
+I0831 12:18:39.538671 134395 demo02_listener.cc:7] height: 1.72
+I0831 12:18:39.538679 134395 demo02_listener.cc:9] books: chinese
+I0831 12:18:39.538683 134395 demo02_listener.cc:9] books: math
+I0831 12:18:39.538686 134395 demo02_listener.cc:9] books: english
+I0831 12:18:39.538688 134395 demo02_listener.cc:11] -------------------------------------------------

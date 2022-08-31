@@ -1,0 +1,23 @@
+Log file created at: 2022/08/30 14:53:41
+Running on machine: in-cyber-docker
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0830 14:53:41.483204 155173 global_data.cc:153] host ip: 192.168.2.105
+W0830 14:53:41.484366 155173 scheduler_factory.cc:63] No sched conf found, use default conf.
+I0830 14:53:41.484647 155175 processor.cc:42] processor_tid: 155175
+I0830 14:53:41.484768 155176 processor.cc:42] processor_tid: 155176
+I0830 14:53:41.485044 155177 processor.cc:42] processor_tid: 155177
+I0830 14:53:41.485193 155178 processor.cc:42] processor_tid: 155178
+I0830 14:53:41.485718 155179 processor.cc:42] processor_tid: 155179
+I0830 14:53:41.485965 155180 processor.cc:42] processor_tid: 155180
+I0830 14:53:41.486042 155181 processor.cc:42] processor_tid: 155181
+I0830 14:53:41.486253 155182 processor.cc:42] processor_tid: 155182
+I0830 14:53:41.486339 155183 processor.cc:42] processor_tid: 155183
+I0830 14:53:41.486629 155184 processor.cc:42] processor_tid: 155184
+I0830 14:53:41.486779 155185 processor.cc:42] processor_tid: 155185
+I0830 14:53:41.487071 155186 processor.cc:42] processor_tid: 155186
+I0830 14:53:41.487362 155187 processor.cc:42] processor_tid: 155187
+I0830 14:53:41.487468 155188 processor.cc:42] processor_tid: 155188
+I0830 14:53:41.487545 155189 processor.cc:42] processor_tid: 155189
+I0830 14:53:41.487641 155190 processor.cc:42] processor_tid: 155190
+I0830 14:53:41.487668 155173 init.cc:113] Register exit handle succ.
+I0830 14:53:41.487722 155173 demo00_helloworld.cc:7] hello world!
