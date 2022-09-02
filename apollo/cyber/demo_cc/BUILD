@@ -38,3 +38,21 @@ cc_binary(
         "//cyber/demo_base_proto:addints_proto_cc"
     ],
 )
+
+cc_binary(
+    name = "demo05_param_server",
+    srcs = ["demo05_param_server.cc"],
+    deps = [
+        "//cyber",
+        "//cyber/parameter"
+    ], 
+)
+
+cc_binary(
+    name = "demo06_param_client",
+    srcs = ["demo06_param_client.cc"],
+    deps = [
+        "//cyber",
+        "//cyber/parameter"
+    ],
+)

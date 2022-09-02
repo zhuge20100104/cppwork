@@ -322,7 +322,6 @@ function determine_gpu_use_amd64() {
         USE_GPU_HOST=1
     fi
     USE_GPU_HOST=0
-
     # Try to use GPU inside container
     local nv_docker_doc="https://github.com/NVIDIA/nvidia-docker/blob/master/README.md"
     if [[ "${USE_GPU_HOST}" -eq 1 ]]; then
@@ -554,4 +553,3 @@ function main() {
 }
 
 main "$@"
-

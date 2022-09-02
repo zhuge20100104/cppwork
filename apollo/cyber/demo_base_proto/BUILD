@@ -25,4 +25,16 @@ cc_proto_library(
     deps=[":addints_proto"], 
 )
 
+proto_library(
+    name="lasers_proto",
+    srcs=["lasers.proto"],
+)
+
+cc_proto_library(
+    name="lasers_proto_cc",
+    deps=[
+        ":lasers_proto",
+    ],
+)
+
 
