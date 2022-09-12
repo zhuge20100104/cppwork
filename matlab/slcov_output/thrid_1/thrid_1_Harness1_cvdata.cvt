@@ -1,0 +1,148 @@
+CV_Database {
+  modelcov {
+    id			    1
+    name		    "thrid_1_Harness1@(R2021b)"
+    unmangledName	    "thrid_1_Harness1"
+    dbVersion		    "(R2021b)"
+    refModelcovIds	    [2]
+    topModelcovId	    [1]
+  }
+  modelcov {
+    id			    2
+    name		    "thrid_1@(R2021b)"
+    unmangledName	    "thrid_1"
+    dbVersion		    "(R2021b)"
+    ownerModel		    "thrid_1"
+    ownerBlock		    "thrid_1"
+    harnessModel	    "thrid_1_Harness1"
+    canHarnessMapBackToOwner 1
+    topModelcovId	    [1]
+    rootTree		    [0 3 0 0]
+    blockTypes		    [6]
+  }
+  root {
+    id			    3
+    modelcov		    2
+    topSlsf		    7
+    firstTest		    4
+    treeNode		    [2 0 0 0]
+    checksum		    [1575030874 838142221 695016941 3769339777]
+    dataSize		    [0 0 0 0 4 0 0]
+    runningTotal	    4
+  }
+  testdata {
+    id			    4
+    modelcov		    2
+    ownerBlock		    "thrid_1"
+    ownerModel		    "thrid_1"
+    harnessModel	    "thrid_1_Harness1"
+    tag			    "Run 1"
+    uniqueId		    "10da89b0-fa10-4e59-a327-887401412522"
+    linkNode		    [3 0 0]
+    type		    DLGENABLED_TST
+    settings		    [1 0 0 0 0 0 0]
+    modelVersion	    "1.11"
+    creator		    "fredric"
+    lastModifiedDate	    "Thu Sep 08 14:48:28 2022"
+    blockReductionStatus    "forcedOff"
+    defaultParameterBehavior "Tunable"
+    dbVersion		    "(R2021b)"
+    dbversionToRestore	    "(R2021b)"
+    conditionallyExecuteInputs 1
+    reducedBlocks	    "100 C{C1x2{T\"thrid_1:52\",T\"Accelerated model reference\"}}"
+    startTime		    738772.6226084065
+    stopTime		    738772.6226198337
+    simStopTime		    10
+    testobjectives	    [0 0 0 0 0 0 0 0 0 0 0 0 0 5]
+    mcdcMode		    1
+    mldref_enable	    "filtered"
+    mldref_excludeTopModel  1
+    covExternalEMLEnable    1
+    forceBlockReductionOff  1
+    covBoundaryRelTol	    0.01
+    covBoundaryAbsTol	    1e-05
+    covSFcnEnable	    1
+  }
+  metricdata {
+    id			    5
+    metricenumValue	    14
+    metricName		    "cvmetric_Structural_block"
+    size		    7
+    data {
+      rawdata		      "100 M7x1[1 0 1 0 1 0 51]"
+    }
+  }
+  typename {
+    id			    6
+    type		    "ModelReference"
+  }
+  slsfobj {
+    id			    7
+    name		    "thrid_1"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [0 8 0 0]
+    metricFlags		    16400
+    metrics		    [9 10]
+    hiddenSubSysHandle	    245.000732421875
+    cvChecksum {
+      u1		      1575030874
+      u2		      838142221
+      u3		      695016941
+      u4		      3769339777
+    }
+  }
+  slsfobj {
+    id			    8
+    name		    "first_1"
+    origin		    SIMULINK_OBJ
+    slBlckType		    6
+    modelcov		    2
+    treeNode		    [7 0 0 0]
+    metricFlags		    16400
+    metrics		    [11 12]
+    cvChecksum {
+      u1		      1015809608
+      u2		      1455857612
+      u3		      365961471
+      u4		      89914351
+    }
+  }
+  metric {
+    id			    9
+  }
+  metric {
+    id			    10
+    dataIdx		    [0 -1]
+    justifiedDataIdx	    [1 0]
+    dataCnt		    [1 0 -1 -1]
+    dataWidth		    8
+  }
+  sigranger {
+    id			    11
+    modelcov		    2
+    slsfobj		    8
+    cov			    [0 2 1 1]
+  }
+  metric {
+    id			    12
+    baseObjs		    [13]
+    dataIdx		    [4 2]
+    justifiedDataIdx	    [5 3]
+    dataCnt		    [1 1 -1 -1]
+    dataWidth		    6
+  }
+  decision {
+    id			    13
+    modelcov		    2
+    slsfobj		    8
+    relopChkExprIdx	    -1
+    descriptor		    14
+    dc			    [1 0 6 0]
+  }
+  message {
+    id			    14
+    keyNum		    24
+    txtParams		    "executed"
+  }
+}

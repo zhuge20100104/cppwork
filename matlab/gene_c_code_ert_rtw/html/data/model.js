@@ -1,0 +1,1 @@
+var modelInfo = {model:"gene_c_code"};var modelHierarchy=[{model:"gene_c_code",relativePath:"_internal.html",parent:"null"},];
